@@ -1,0 +1,37 @@
+@{
+    Layout = "_Layout";
+
+}
+
+<h2> Daftar Mahasiswa</h2>
+<div class="row">
+@if(ViewData["pesan"]!=null){
+    @Html.Raw(ViewData["pesan"])
+}
+<br/><br/>
+</div>
+
+<div class="row">
+<table class="table table-hover">
+    <tr>
+        <th>Nim</th>
+        <th>Nama_mhs</th>
+        <th>Status</th>
+        <th>Nilai</th>
+        <th>No_hp_mhs</th>
+        <th>No_hp_ortu</th>
+        <th>Password</th>
+    </tr>
+    @foreach(var data in Model){
+    <tr>
+        <td>@data.Nim</td>
+        <td>@data.Nama_mhs</td>
+        <td>@data.Status</td>
+        <td>@data.Nilai</td>
+        <td>@data.No_hp_mhs</td>
+        <td>@data.No_hp_ortu</td>
+        <td>@data.Password</td>
+    </tr>
+    }
+</table> 
+</div>
