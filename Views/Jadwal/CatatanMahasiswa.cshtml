@@ -1,0 +1,39 @@
+@model IList<SistemPerwalian2020.Models.CatatanPerwalian>
+@{
+    Layout = "_Layout";
+
+}
+<div class="container body-content">
+    <br>
+    <h2> Catatan </h2>
+    <hr />
+    <section class="blog_area">
+        <div class="container">
+            <div class="row">
+
+                <table class="table table-hover">
+                    <tr>
+                        <th>Waktu</th>
+                        <th>Periode</th>
+                        <th>Catatan</th>
+                    </tr>
+                    @foreach (var data in Model)
+                    {
+                        <tr>
+                            <td>
+                                @data.Waktu.ToString("dd MMMM yyyy")
+                            </td>
+                            <td>
+                                @data.Waktu.ToString("yyyy")
+                            </td>
+                            <td>
+                                <i>" @data.Catatan "</i>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+        </div>
+    </section>
+</div>

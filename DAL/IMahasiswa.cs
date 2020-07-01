@@ -1,18 +1,19 @@
 
-
 using System.Collections.Generic;
 using SistemPerwalian2020.Models;
 
-namespace SistemPerwalian.DAL{
+namespace SistemPerwalian2020.DAL{
     public interface IMahasiswa
     {
-        IEnumerable<Mahasiswa> Login(string Id, string Password);
+       Mahasiswa Login(string Id, string Password);
         IEnumerable<Mahasiswa> GetAll();
+        TranskripViewModel GetNilai(string nim, string role);
+        void CreateNilai(IList<DetailTranskrip> det);
+        void DeleteMakul(int kode);
 
         Mahasiswa GetByNim(string nim);
 
         void Insert(Mahasiswa mhs);
         void Update (Mahasiswa mhs);
-        void Delete(Mahasiswa mhs);
     }
 }

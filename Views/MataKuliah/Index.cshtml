@@ -1,0 +1,82 @@
+@model IEnumerable<SistemPerwalian2020.Models.MataKuliah>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content">
+    <br>
+    <h2> Daftar Matakuliah</h2>
+    <br>
+    <br>
+    @Html.Raw(ViewBag.Pesan)
+
+    <section class="blog_area">
+        <div class="container" style="margin-bottom:100px">
+            
+                <p>
+                    <a href="@Url.Action("Create", "MataKuliah")" class="btn btn-success">Tambah Matakuliah</a>
+                </p>
+            
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                               Kode Makul
+                            </th>
+                            <th>
+                                Nama
+                            </th>
+                            <th align="center">
+                                SKS
+                            </th>
+                            <th align="center">
+                                Syarat Semester
+                            </th>
+                           
+                                <th></th>
+                                <th></th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            
+                            <tr>
+                                <td style="vertical-align:middle">
+                                    @Html.DisplayFor(modelItem => item.Kode_Matkul)
+                                </td>
+                                <td style="vertical-align:middle">
+                                    @Html.DisplayFor(modelItem => item.Nama_Makul)
+                                </td>
+                                <td style="vertical-align:middle">
+                                    @Html.DisplayFor(modelItem => item.SKS)
+                                </td>
+                                <td style="vertical-align:middle">
+                                    @Html.DisplayFor(modelItem => item.Semester)
+                                </td>
+                               
+                                    <td align="center" style="vertical-align:middle">
+                                        @Html.ActionLink("Edit", "Edit", new { kode = item.Kode_Matkul }, new { @class = "btn btn-warning btn-sm" })
+
+                                    </td>
+                                    <td align="center" style="vertical-align:middle">
+                                        @Html.ActionLink("Delete", "Delete", new { kode = item.Kode_Matkul }, new { @class = "btn btn-danger btn-sm" })
+
+                                    </td>
+
+                                 
+                            </tr>
+                        
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+   
+</div>

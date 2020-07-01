@@ -1,0 +1,32 @@
+@{
+    Layout = "_Layout";
+
+}
+<div class="container body-content">
+
+<h2> Dosen</h2>
+<br>
+<br>
+<section class="blog_area">
+            <div class="container">
+                <div class="row">
+<table class="table table-hover">
+    <tr>
+        <th>Nik</th>
+        <th>Nama</th>
+        <th>Password</th>
+        <th>Id</th>
+    </tr>
+    @foreach(var data in Model){
+    <tr>
+        <td>@data.Nik</td>
+        <td>@data.Nama</td>
+        <td>@data.Password</td>
+        <td>@data.Id</td>
+    </tr>
+    }
+</table> 
+ </div>
+            </div>
+</section>
+</div>

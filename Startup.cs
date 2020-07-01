@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Session;
-using SistemPerwalian.DAL;
 using SistemPerwalian2020.DAL;
+
 
 namespace SistemPerwalian2020
 {
@@ -22,6 +22,11 @@ namespace SistemPerwalian2020
             services.AddSession();
             services.AddDistributedMemoryCache();
             services.AddScoped<IMahasiswa,MahasiswaDAL>();
+            services.AddScoped<IDosen,DosenDAL>();
+            services.AddScoped<IJadwal, JadwalDAL>();
+            services.AddScoped<IKrs, KrsDAL>();
+            services.AddScoped<IMatakuliah, MatakuliahDAL>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

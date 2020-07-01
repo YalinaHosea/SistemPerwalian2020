@@ -1,8 +1,24 @@
-namespace SistemPerwalian2020.Models{
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-    public class Krs {
-        public string Id_krs {get; set; }
-        public string Nim {get; set; }
-        public string Semester {get; set; }
+namespace SistemPerwalian2020.Models
+{
+
+    public class Krs
+    {
+        public int Id_krs { get; set; }
+        public string Nim { get; set; }
+        public string Semester { get; set; }
+        public IEnumerable<DetailKrs_ViewModel> detail { get; set; }
+    }
+
+    public class DetailKrs_ViewModel
+    {
+        public int Id_krs { get; set; }
+        public string Kode_Matkul { get; set; }
+        public string Nama_Makul { get; set; }
+        public string SKS { get; set; }
     }
 }

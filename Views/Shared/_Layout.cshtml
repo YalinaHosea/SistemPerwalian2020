@@ -1,191 +1,105 @@
-
-        @using Microsoft.AspNetCore.Http
-
-
 <!doctype html>
 <html lang="en">
 <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="~/Images/UKDW.jpg" type="image/jpg">
+    @using Microsoft.AspNetCore.Http
 
-        <title>Sistem Perwalian </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="~/Images/UKDW.jpg" type="image/jpg">
 
+    <title>Sistem Perwalian </title>
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link rel="stylesheet" href="~/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="~/css/bootstrap.css">
-        <link rel="stylesheet" href="~/vendors/linericon/style.css">
-        <link rel="stylesheet" href="~/css/font-awesome.min.css">
-        <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="~/vendors/lightbox/simpleLightbox.css">
-        <link rel="stylesheet" href="~/vendors/nice-select/css/nice-select.css">
-        <link rel="stylesheet" href="~/vendors/animate-css/animate.css">
-        <!-- main css -->
-        <link rel="stylesheet" href="~/css/style.css">
-        <link rel="stylesheet" href="~/css/responsive.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+</head>
+<body>
+    <header class="header_area">
+        <div class="top_menu row m0">
 
-  <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+        <div class="container">
+                <div class="float-right">
 
-   
-    </head>
-    <body>
-        
-        <!--================Header Menu Area =================-->
-        <header class="header_area">
-           	<div class="top_menu row m0">
+                    @if (@Context.Session.GetString("user") != null && @Context.Session.GetString("user") != "")
+                    {
 
-           		<div class="container">
-					<div class="float-left">
-						<ul class="list header_social">
-							<!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-							<li><a href="#"><i class="fa fa-behance"></i></a></li>-->
-						</ul>
-					</div>
-					<div class="float-right">
-						<!--<a class="dn_btn" href="tel:+4400123654896">+440 012 3654 896</a>-->
-                        {
-                            <a class="dn_btn"  href="@Url.Action("Login","Admin")">Login</a>
-                        }
-						
-					</div>
-           		</div>
-           	</div>	
-            <div class="main_menu">
-            	<nav class="navbar navbar-expand-lg navbar-light">
-					<div class="container">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand logo_h" href="@Url.Action("Index","Home")"><img height="60px" width="40px" src="~/Images/UKDW.jpg" alt=""></a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-							<ul class="nav navbar-nav menu_nav ml-auto">
-                                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">Home</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","DaftarMahasiswa")">Daftar Mahasiswa</a></li>
-								<li class="nav-item"><a class="nav-link" href="@Url.Action("About","TranskripNilai")">Transkrip Nilai</a></li> 
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("About","JadwalPerwalian")">Jadwal Perwalian</a></li> 
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("About","CatatanPerwalian")">Catatan Perwalian</a></li>
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("About","RencanaStudi")">KRS</a></li>
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("About","Formulir Rencana Studi")">Formulir KRS</a></li>
-                                
-								
-							</ul>
-						</div> 
-					</div>
-            	</nav>
-            </div>
-        </header>
-       
-      
-                    @RenderBody()
-               
-        <footer class="footer-area p_120">
-            <!--<div class="container">
-            <div class="row">
-                    <div class="col-lg-2  col-md-6 col-sm-6">
-                        <div class="single-footer-widget tp_widgets">
-                           <h6 class="footer_title">Top Products</h6>
-                            <ul class="list">
-                            	<li><a href="#">Managed Website</a></li>
-                            	<li><a href="#">Manage Reputation</a></li>
-                            	<li><a href="#">Power Tools</a></li>
-                            	<li><a href="#">Marketing Service</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2  col-md-6 col-sm-6">
-                        <div class="single-footer-widget tp_widgets">
-                           <h6 class="footer_title">Quick Links</h6>
-                            <ul class="list">
-                            	<li><a href="#">Jobs</a></li>
-                            	<li><a href="#">Brand Assets</a></li>
-                            	<li><a href="#">Investor Relations</a></li>
-                            	<li><a href="#">Terms of Service</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2  col-md-6 col-sm-6">
-                        <div class="single-footer-widget tp_widgets">
-                           <h6 class="footer_title">Features</h6>
-                            <ul class="list">
-                            	<li><a href="#">Jobs</a></li>
-                            	<li><a href="#">Brand Assets</a></li>
-                            	<li><a href="#">Investor Relations</a></li>
-                            	<li><a href="#">Terms of Service</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2  col-md-6 col-sm-6">
-                        <div class="single-footer-widget tp_widgets">
-                           <h6 class="footer_title">Resources</h6>
-                            <ul class="list">
-                            	<li><a href="#">Guides</a></li>
-                            	<li><a href="#">Research</a></li>
-                            	<li><a href="#">Experts</a></li>
-                            	<li><a href="#">Agencies</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <aside class="f_widget news_widget">
-        					<div class="f_title">
-        						<h3 class="footer_title">Newsletter</h3>
-        					</div>
-        					<p>Stay updated with our latest trends</p>
-        					<div id="mc_embed_signup">
-                                <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
-                                	<div class="input-group d-flex flex-row">
-                                        <input name="EMAIL" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-                                        <button class="btn sub-btn"><span class="lnr lnr-arrow-right"></span></button>		
-                                    </div>				
-                                    <div class="mt-10 info"></div>
-                                </form>
-                            </div>
-        				</aside>
-                    </div>
-                </div>-->
-                <div class="row footer-bottom d-flex justify-content-between align-items-center">
-                    <p class="col-lg-8 col-md-8 footer-text m-0"> <!--Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    <div class="col-lg-4 col-md-4 footer-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </div>
+                    <b style="font-weight:bold" class="dn_btn">Hello @Context.Session.GetString("user") &nbsp;&nbsp;&nbsp; <a href="@Url.Action("Logout","Account")">Log Out</a></b>
+                    }
+                    else
+                    {
+                        <a style="font-weight:bold" class="dn_btn" href="@Url.Action("Login","Account")">Login</a>
+                    }
                 </div>
             </div>
-        </footer>
-		<!--================ End footer Area  =================-->
-        
-        
-        
-        
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="~/js/jquery-3.3.1.min.js"></script>
-        <script src="~/js/popper.js"></script>
-        <script src="~/js/bootstrap.min.js"></script>
-        <script src="~/js/stellar.js"></script>
-        <script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
-        <script src="~/vendors/nice-select/js/jquery.nice-select.min.js"></script>
-        <script src="~/vendors/isotope/imagesloaded.pkgd.min.js"></script>
-        <script src="~/vendors/isotope/isotope.pkgd.min.js"></script>
-        <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="~/vendors/jquery-ui/jquery-ui.js"></script>
-        <script src="~/js/jquery.ajaxchimp.min.js"></script>
-        <script src="~/vendors/popup/jquery.magnific-popup.min.js"></script>
-        <script src="~/js/mail-script.js"></script>
-        <script src="~/vendors/counter-up/jquery.waypoints.min.js"></script>
-        <script src="~/vendors/counter-up/jquery.counterup.js"></script>
-        <script src="~/js/theme.js"></script>
-    </body>
+        </div>
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <a class="navbar-brand logo_h" href="@Url.Action("Index","Home")"><img height="60px" width="40px" src="~/Images/UKDW.jpg" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">Home</a></li>
+                            @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") == "superadmin")
+                             {
+                             <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Mahasiswa")">Daftar Mahasiswa</a></li>
+                             }
+                              @if (@Context.Session.GetString("role") == "superadmin")
+                             {
+                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","MataKuliah")">Daftar Matakuliah</a></li>
+
+                             }
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Jadwal")">Jadwal Perwalian</a></li>
+                           @if (@Context.Session.GetString("role") == "mahasiswa")
+                            {
+                                <li class="nav-item"><a class="nav-link" href="@Url.Action("CatatanMahasiswa", "Jadwal", new { nim = @Context.Session.GetString("id") })">Catatan Perwalian</a></li>
+                                <li class="nav-item"><a class="nav-link" href="@Url.Action("Nilai", "Mahasiswa", new { id = @Context.Session.GetString("id") })">Lihat Nilai</a></li>
+                                <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Krs")">KRS</a></li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    @RenderBody()
+
+    <footer class="footer-area p_120"></footer>
+
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script src="~/js/stellar.js"></script>
+    <script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="~/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+    <script src="~/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="~/vendors/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/vendors/jquery-ui/jquery-ui.js"></script>
+    <script src="~/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/vendors/popup/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/mail-script.js"></script>
+    <script src="~/vendors/counter-up/jquery.waypoints.min.js"></script>
+    <script src="~/vendors/counter-up/jquery.counterup.js"></script>
+    <script src="~/js/theme.js"></script>
+
+</body>
 </html>
+

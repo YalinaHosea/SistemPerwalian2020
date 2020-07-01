@@ -1,0 +1,64 @@
+@model IList<SistemPerwalian2020.Models.PresensiViewModel>
+@{
+    Layout = "_Layout";
+
+}
+<div class="container body-content">
+    <br>
+    <h2> Presensi Perwalian Prodi @ViewBag.prodi Grup @ViewBag.grup </h2>
+    <p><h3>@ViewBag.waktu.ToString("dd MMMM yyyy")</h3></p>
+    <br>
+    <br>
+    <form asp-action="UpdatePresensi">
+
+        <section class="blog_area">
+            <div class="container" style="margin-bottom:50px">
+                <div class="row">
+
+                    <table class="table table-hover">
+                        <tr>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>Waktu</th>
+                            <th>Hadir</th>
+
+                        </tr>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                        <tr>
+                            <td asp-for="@Model[i].Nim" name="Nim">
+                                @Model[i].Nim
+                                <input type="hidden" asp-for="@Model[i].Nim" value="@Model[i].Nim" />
+                                <input type="hidden" asp-for="@Model[i].Kode_jadwal" value="@Model[i].Kode_jadwal" />
+
+                            </td>
+                            <td asp-for="@Model[i].Nama_mhs" name="Nama_mhs">
+                                @Model[i].Nama_mhs
+                                <input type="hidden" asp-for="@Model[i].Nama_mhs" value="@Model[i].Nama_mhs" />
+                            </td>
+                            <td>
+                                @if (Model[i].Waktu.ToString() == "01/01/0001 00:00:00")
+                                {
+                                    <span>-</span>
+                                }
+                                else
+                                {
+                                    @Model[i].Waktu.ToString("dd MMMM yyyy hh:mm")
+
+                                }
+                            </td>
+                            <td>
+                                <input asp-for="@Model[i].Hadir" type="checkbox" />
+                            </td>
+
+                        </tr>
+                        }
+                    </table>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                </div>
+            </div>
+        </section>
+    </form>
+</div>

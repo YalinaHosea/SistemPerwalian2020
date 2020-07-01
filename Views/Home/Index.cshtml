@@ -1,6 +1,31 @@
+- index.cshtml di home/index : 
+
 @{
     Layout = "_Layout";
 }
- 
- <h1>Selamat Datang di Home Page</h1>
- <p>Selamat Datang di Halaman Home Page</p>
+@using Microsoft.AspNetCore.Http
+
+<section class="blog_area">
+    <div class="container" style="margin-top:180px;margin-bottom:100px">
+        <div class="col-lg-12">
+            <div class="blog_right_sidebar">
+                <aside class="single-sidebar-widget newsletter_widget">
+                    <h4 class="widget_title">PERWALIAN ONLINE</h4>
+                    <div class="coloumn">
+                        @if (Context.Session.GetString("user") != null && Context.Session.GetString("user") != "")
+                        {
+
+                        <h3>Selamat Datang @Context.Session.GetString("user")</h3>
+                        <p>Aplikasi ini dibuat bertujuan untuk :</p>
+                        <p>* Mengatur Matakuliah yang akan diambil pada semester yang akan dijalani</p>
+                        <p>* Melakukan pembuatan laporan seperti :</p>
+                        <p>  - Formulir Rencana Studi (FRS)</p>
+                        }
+
+                    </div>
+                    <div class="br"></div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

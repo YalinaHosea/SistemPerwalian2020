@@ -1,0 +1,30 @@
+@model IEnumerable<SistemPerwalian2020.Models.MataKuliah>
+@using Microsoft.AspNetCore.Http
+
+
+<div class="container">
+    <div class="row">
+        <table class="table table-hover">
+            <tr>
+                <th>Kode Makul</th>
+                <th>Nama Makul</th>
+                <th>SKS</th>
+                <th>Syarat Semester</th>
+                <th></th>
+            </tr>
+            @foreach (var data in Model)
+            {
+                if(Context.Session.GetString("semester") == data.Semester.ToString()){
+                <tr>
+                    <td>@data.Kode_Matkul</td>
+                    <td>@data.Nama_Makul</td>
+                    <td>@data.SKS</td>
+                    <td>@data.Semester</td>
+                   
+                    <td> <a class="DefaultEditBtn btn btn-success btn-sm" onclick="selectmakul('@data.Kode_Matkul', '@data.Nama_Makul', '@data.SKS')"><span style="color:white">Pilih</span></a></td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+@model SistemPerwalian2020.Models.MataKuliah
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content">
+    <br>
+    <h2> Tambah Matakuliah</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CreatePost">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div class="form-group">
+                    <label asp-for="Kode_Matkul" class="control-label">Kode Matakuliah</label>
+                    <input asp-for="Kode_Matkul" class="form-control" />
+                    <span asp-validation-for="Kode_Matkul" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nama_Makul" class="control-label">Nama Makul</label>
+                    <input asp-for="Nama_Makul" class="form-control" />
+                    <span asp-validation-for="Nama_Makul" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SKS" class="control-label">SKS</label>
+                    <input asp-for="SKS" class="form-control" />
+                    <span asp-validation-for="SKS" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Semester" class="control-label">Syarat Semester</label>
+                    <input asp-for="Semester" class="form-control" />
+                    <span asp-validation-for="Semester" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+    </div>

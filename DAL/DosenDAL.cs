@@ -6,25 +6,30 @@ using Microsoft.Extensions.Configuration;
 using SistemPerwalian2020.Models;
 using Dapper;
 
-namespace SistemPerwalian2020.DAL {
+namespace SistemPerwalian2020.DAL
+{
 
-    public class AdminDAL : IDosen
+    public class DosenDAL : IDosen
     {
         private IConfiguration _config;
-        public AdminDAL(IConfiguration config)
+        public DosenDAL(IConfiguration config)
         {
             _config = config;
         }
-        private string GetConnStr(){
+        private string GetConnStr()
+        {
             return _config.GetConnectionString("DefaultConnection");
         }
-        public IEnumerable<Dosen> Login(string Id, string Password)
+        
+
+        public Dosen Login(string id, string password)
         {
-            using(SqlConnection conn = new SqlConnection(GetConnStr())){
-                var strSql = @"select * from Admin where email=@email and password=@password";
-                var param = new {Id=Id, Password=Password};
-                return conn.Query<Dosen>(strSql,param);   
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"select * from Dosen where NIK=@Id and Password=@Password";
+                var param = new { Id = id, Password = password };
+                return conn.QuerySingleOrDefault<Dosen>(strSql, param);
             }
-                     }
+        }
     }
 }

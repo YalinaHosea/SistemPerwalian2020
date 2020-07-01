@@ -67,7 +67,7 @@ body {
   color: #777777; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Playfair Display", serif;
+  font-family: Arial;
   font-weight: bold; }
 
 button:focus {
@@ -85,8 +85,10 @@ button:focus {
   margin-top: 25px; }
 
 @media (min-width: 1200px) {
-  .container {
-    max-width: 1170px; } }
+    .container {
+        max-width: 1170px;
+       
+    } }
 
 @media (min-width: 1620px) {
   .box_1620 {
@@ -99,7 +101,7 @@ button:focus {
   max-width: 680px;
   margin: 0px auto 75px; }
   .main_title h2 {
-    font-family: "Playfair Display", serif;
+    font-family: Arial, serif;
     font-size: 36px;
     color: #222222;
     margin-bottom: 12px; }
@@ -249,11 +251,9 @@ button:focus {
     font-size: 12px;
     margin-right: 30px;
     font-family: "Roboto", sans-serif;
-    font-weight: normal;
-    color: #777777;
+    
     transition: all 300ms linear 0s; }
-    .top_menu .dn_btn:hover {
-      cursor: default; }
+   
     .top_menu .dn_btn:last-child {
       margin-right: 0px; }
   .top_menu .lan_pack {
@@ -313,7 +313,7 @@ button:focus {
         margin-bottom: 15px; }
       .home_banner_area .banner_inner .banner_content h3 {
         font-size: 42px;
-        font-family: "Playfair Display", serif;
+        font-family: Arial, serif;
         font-weight: 900;
         margin-bottom: 20px; }
       .home_banner_area .banner_inner .banner_content p {
@@ -355,7 +355,7 @@ button:focus {
       .blog_banner .banner_inner .blog_b_text h2 {
         font-size: 60px;
         font-weight: bold;
-        font-family: "Playfair Display", serif;
+        font-family: Arial, serif;
         line-height: 66px;
         margin-bottom: 15px; }
       .blog_banner .banner_inner .blog_b_text p {
@@ -393,7 +393,7 @@ button:focus {
     .banner_area .banner_inner .banner_content h2 {
       color: #fff;
       font-size: 48px;
-      font-family: "Playfair Display", serif;
+      font-family: Arial, serif;
       margin-bottom: 0px;
       font-weight: bold; }
     .banner_area .banner_inner .banner_content .page_link a {
@@ -2582,7 +2582,7 @@ h6 {
     .team_item .team_name h4 {
       margin-bottom: 5px;
       color: #222222;
-      font-family: "Playfair Display", serif;
+      font-family: Arial;
       font-weight: bold;
       font-size: 18px;
       transition: all 300ms linear 0s; }
@@ -2891,7 +2891,7 @@ h6 {
       padding-bottom: 12px;
       font-size: 14px;
       color: #222222;
-      font-family: "Playfair Display", serif;
+      font-family: Arial;
       font-weight: bold;
       text-decoration: none;
       cursor: pointer;
@@ -3079,7 +3079,7 @@ h6 {
   font-size: 18px;
   line-height: 24px;
   font-weight: bold;
-  font-family: "Playfair Display", serif;
+  font-family: Arial, serif;
   color: #fff;
   margin-bottom: 28px; }
 

@@ -2,36 +2,57 @@
     Layout = "_Layout";
 
 }
+@using Microsoft.AspNetCore.Http
 
-<h2> Daftar Mahasiswa</h2>
-<div class="row">
-@if(ViewData["pesan"]!=null){
-    @Html.Raw(ViewData["pesan"])
-}
-<br/><br/>
-</div>
-
-<div class="row">
-<table class="table table-hover">
-    <tr>
-        <th>Nim</th>
-        <th>Nama_mhs</th>
-        <th>Status</th>
-        <th>Nilai</th>
-        <th>No_hp_mhs</th>
-        <th>No_hp_ortu</th>
-        <th>Password</th>
-    </tr>
-    @foreach(var data in Model){
-    <tr>
-        <td>@data.Nim</td>
-        <td>@data.Nama_mhs</td>
-        <td>@data.Status</td>
-        <td>@data.Nilai</td>
-        <td>@data.No_hp_mhs</td>
-        <td>@data.No_hp_ortu</td>
-        <td>@data.Password</td>
-    </tr>
-    }
-</table> 
-</div>
+<div class="container body-content">
+    <br>
+    <h2> Daftar Mahasiswa</h2>
+    <br>
+    <br>
+    @Html.Raw(ViewBag.Pesan)
+    <section class="blog_area">
+        <div class="container" style="margin-bottom:50px">
+            <div class="row">
+                <table class="table table-hover">
+                    <tr>
+                        <th></th>
+                        <th>NIM</th>
+                        <th>Nama</th>
+                        <th>Status</th>
+                        <th>Grup</th>
+                        <th>Angkatan</th>
+                        <th>No.HP</th>
+                        <th>No.HP Orangtua</th>
+                        <th></th>
+                        @if (Context.Session.GetString("role") == "superadmin")
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                    @foreach (var data in Model)
+                    {
+                        if(data.Grup == Context.Session.GetString("grup") || Context.Session.GetString("grup") == "")
+                        {
+                        var src = "/Images/" + data.Nim + ".jpg";
+                        <tr>
+                            <td><img src="@src" class="rounded-circle" style="height:50px;width:50px" /></td>
+                            <td style="vertical-align:middle">@data.Nim</td>
+                            <td style="vertical-align:middle">@data.Nama_mhs</td>
+                            <td style="vertical-align:middle">@data.Status</td>
+                              <td style="vertical-align:middle">@data.Grup</td>
+                             <td style="vertical-align:middle">@data.Angkatan</td>
+                            <td style="vertical-align:middle">@data.No_hp_mhs</td>
+                            <td style="vertical-align:middle">@data.No_hp_ortu</td>
+                            <td style="vertical-align:middle"> @Html.ActionLink("Lihat Nilai", "Nilai", new { id = data.Nim, role = @Context.Session.GetString("role") }, new { @class = "btn btn-warning btn-round" })</td>
+                            @if (Context.Session.GetString("role") == "superadmin")
+                            {
+                                <td style="vertical-align:middle">@Html.ActionLink("Tambah Nilai", "CreateNilai", new { id = data.Nim, role = @Context.Session.GetString("role") }, new { @class = "btn btn-success btn-round" })</td>
+                            }
+                        </tr>
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
+</div>  

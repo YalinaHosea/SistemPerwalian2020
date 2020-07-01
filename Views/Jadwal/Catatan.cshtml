@@ -1,0 +1,64 @@
+@model IList<SistemPerwalian2020.Models.CatatanPerwalian>
+@{
+    Layout = "_Layout";
+
+}
+<div class="container body-content">
+    <br>
+    <h2> Catatan </h2>
+    <br>
+    <br>
+    <form asp-action="UpdateCatatan">
+
+        <section class="blog_area">
+            <div class="container">
+                <div class="row">
+
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Nim</th>
+                            <th>Nama_mhs</th>
+                            <th>Waktu</th>
+                            <th>Catatan</th>
+
+                        </tr>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <tr>
+                                <td asp-for="@Model[i].Nim" name="Nim">
+                                    @Model[i].Nim
+                                    <input type="hidden" asp-for="@Model[i].Nim" value="@Model[i].Nim" />
+                                    <input type="hidden" asp-for="@Model[i].Kode_jadwal" value="@Model[i].Kode_jadwal" />
+
+                                </td>
+                                <td asp-for="@Model[i].Nama_mhs" name="Nama_mhs">
+                                    @Model[i].Nama_mhs
+                                    <input type="hidden" asp-for="@Model[i].Nama_mhs" value="@Model[i].Nama_mhs" />
+                                </td>
+
+                                <td asp-for="@Model[i].Waktu" name="Waktu">
+                                    @if (Model[i].Waktu.ToString() == "01/01/0001 00:00:00")
+                                    {
+                                        <span>-</span>
+                                    }
+                                    else
+                                    {
+                                        @Model[i].Waktu
+
+                                    }
+                                </td>
+                                <td>
+                                    <input asp-for="@Model[i].Catatan" type="text" class="form-control" />
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="row">
+                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                </div>
+            </div>
+        </section>
+    </form>
+</div>

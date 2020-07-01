@@ -1,0 +1,42 @@
+
+ @model SistemPerwalian2020.Models.Krs
+
+@{
+    Layout = "_Layout";
+
+}
+<div class="container body-content">
+    <br>
+    <h2>@Model.Nim</h2>
+    <h2>Semester : @Model.Semester</h2>
+    <br>
+    <br>
+    @Html.Raw(ViewBag.Pesan)
+
+    <section class="blog_area">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover">
+                    <tr>
+                        <th>Kode Mata Kuliah</th>
+                        <th>Nama Mata Kuliah</th>
+                        <th>SKS</th>
+                    </tr>
+                    @foreach (var data in Model.detail)
+                    {
+                        <tr>
+                            <td>@data.Kode_Matkul</td>
+                            <td>@data.Nama_Makul</td>
+                            <td>@data.SKS</td>
+                        </tr>
+
+                    }
+                    <tr>
+                        <td> <a href="@Url.Action("EditKrs", "Krs")" class="btn btn-warning">Ubah Data KRS</a></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

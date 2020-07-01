@@ -1,0 +1,184 @@
+@model SistemPerwalian2020.Models.TranskripViewModel
+
+@{
+    Layout = "_Layout";
+
+}
+@{
+    var src = "/Images/" + Model.mahasiswa.Nim + ".jpg";
+}
+
+<div class="container body-content">
+    <br>
+    <div style="display:flex;align-items:center">
+        <img src="@src" class="rounded-circle" style="height:100px;width:100px" />
+        <div style="margin-left:20px">
+            <h2>@Model.mahasiswa.Nama_mhs / @Model.mahasiswa.Nim</h2>
+            <p style="margin-bottom:0">Tahun Akademik 2017/2018 Semester Genap</p>
+        </div>
+    </div>
+    <br />
+    <section class="blog_area">
+        <div class="container" style="margin-bottom:50px">
+            <div class="row">
+                <table id="tabeldetail" class="table table-hover">
+                    <tr>
+                        <th>Kode Makul</th>
+                        <th>Nama Makul</th>
+                        <th>SKS</th>
+                        <th>Nilai</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var data in Model.detail)
+                    {
+                    <tr>
+                        <td>
+                            @data.Kode_matkul
+                            <input class="kodemakul" type="hidden" value="@data.Kode_matkul" />
+                        </td>
+
+                        <td>
+                            @data.Nama_makul
+                            <input class="namamakul" type="hidden" value="@data.Nama_makul" />
+                        </td>
+
+                        <td>
+                            @data.SKS
+                            <input class="sks" type="hidden" value="@data.SKS" />
+                        </td>
+
+                        <td>
+                            <select asp-for="@data.Nilai" asp-items="@(new SelectList(ViewBag.nilai,"Value","Text"))">
+                                <option value=""></option>
+                            </select>
+                        </td>
+                        <td>@Html.ActionLink("Hapus", "DeleteMakul", "Mahasiswa", new { id = data.Kode_detail }, htmlAttributes: new { @class = "BtnRemove btn btn-danger btn-xs pull-right" })</td>
+
+                    </tr>
+                    }
+                </table>
+                <div>
+                    <input type="hidden" id="hiddenid" asp-for="@Model.transkrip.Kode_Transkrip" value="@Model.transkrip.Kode_Transkrip" />
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type='button' id='btntambahnilai' value='Tambah Nilai' class='BtnTambah btn btn-success btn-sm pull-left' />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="button" id="btnsimpan" value="Simpan" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="modalmakul">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                </div>
+                <div class="modal-body" id="modalmakulbody">
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            selectmakul = function (kode, nama, sks) {
+                var string = "<tr><td>" + kode + "<input class='kodemakul' type='hidden' value='" + kode + "' /></td>" +
+                    "<td>" + nama + "<input class='namamakul' type='hidden' value='" + nama + "' /></td>" +
+                    "<td>" + sks + "<input class='sks' type='hidden' value='" + sks + "' /></td>" +
+                    "<td><select id='data_Nilai' name='data.Nilai' style='display: none;'>" +
+                    "<option selected='selected' value=''></option>" +
+                            "<option value='A'>A</option>" + 
+                            "<option value='A-'>A-</option>" +
+                            "<option value='B+'>B+</option>"+
+                            "<option value='B'>B</option>"+
+                            "<option value='B-'>B-</option>"+
+                            "<option value='C+'>C+</option>"+
+                            "<option value='C'>C</option>"+
+                            "<option value='C-'>C-</option>"+
+                            "<option value='D'>D</option>"+
+                            "<option value='E'>E</option>"+
+                            "<option value='F'>F</option>"+
+                        "</select><div class='nice-select' tabindex='0'><span class='current'></span><ul class='list'><li data-value='' class='option selected'></li><li data-value='A' class='option'>A</li><li data-value='A-' class='option'>A-</li><li data-value='B+' class='option'>B+</li><li data-value='B' class='option'>B</li><li data-value='B-' class='option'>B-</li><li data-value='C+' class='option'>C+</li><li data-value='C' class='option'>C</li><li data-value='C-' class='option'>C-</li><li data-value='D' class='option'>D</li><li data-value='E' class='option'>E</li><li data-value='F' class='option'>F</li></ul></div>" +
+                    "</td>" +
+                     "<td><input type='button' id='deletemakul' value='Hapus' class='BtnRemove btn btn-danger btn-xs pull-right' /></td>" +
+                    "</tr>";
+                $('#tabeldetail > tbody:last-child').append(string);
+
+                $("#modalmakul").modal("hide");
+
+            }
+
+            $('#btntambahnilai').click(function () {
+                var url = "/Krs/IndexMakul"
+
+                $("#modalmakulbody").load(url, function () {
+                    $("#modalmakul").modal("show");
+                })
+            });
+
+            $('#tabeldetail').on('click', '.BtnRemove', function (e) {
+
+                e.preventDefault();
+                $(this).parents('tr').remove();
+                $.ajax({
+
+                    url: $(this).attr("href"), // comma here instead of semicolon
+                    success: function () {
+                        alert('data makul berhasil dihapus')
+
+                    }
+
+                });
+
+            });
+
+            $('#btnsimpan').click(function () {
+                var listmakul = [];
+                $('#tabeldetail tbody tr').each(function (index, ele) {
+                    var makulitem = {
+                        Kode_transkrip: $('#hiddenid').val(),
+                        Kode_matkul: $('.kodemakul', this).val(),
+                        Nama_makul: $('.namamakul', this).val(),
+                        SKS: parseInt($('.sks', this).val()),
+                        Nilai: $('#data_Nilai', this).val(),
+                    };
+                    console.log(makulitem);
+                    if (makulitem.Kode_matkul !== undefined) {
+                        listmakul.push(makulitem);
+                    }
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Mahasiswa/CreatePost',
+                    data: { detail: listmakul },
+                    dataType: 'json',
+                    success: function (data) {
+
+                        window.location.href = data.url;
+                    },
+                    error: function (error) {
+                        alert(error.statusText);
+                    }
+                });
+            });
+
+        });
+    </script>
+}
+
