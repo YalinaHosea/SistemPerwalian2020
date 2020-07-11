@@ -12198,11 +12198,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Program S1\\Semester 6\\PETERPAN\\SistemPerwalian2020\\SistemPerwalian2020.csproj",
+      "projectUniqueName": "D:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\SistemPerwalian2020.csproj",
       "projectName": "SistemPerwalian2020",
-      "projectPath": "D:\\Program S1\\Semester 6\\PETERPAN\\SistemPerwalian2020\\SistemPerwalian2020.csproj",
+      "projectPath": "D:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\SistemPerwalian2020.csproj",
       "packagesPath": "C:\\Users\\X555B\\.nuget\\packages\\",
-      "outputPath": "D:\\Program S1\\Semester 6\\PETERPAN\\SistemPerwalian2020\\obj\\",
+      "outputPath": "D:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

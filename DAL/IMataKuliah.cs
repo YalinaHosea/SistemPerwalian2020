@@ -5,7 +5,7 @@ using SistemPerwalian2020.Models;
 namespace SistemPerwalian2020.DAL{
     public interface IMatakuliah
     {
-        IEnumerable<MataKuliah> GetAll();
+       MakulVM GetAll();
         void DeleteMakul(string kode);
         MataKuliah GetDatabyID(string kode);
         void Insert(MataKuliah mhs);

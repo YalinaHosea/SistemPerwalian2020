@@ -1,0 +1,124 @@
+@model SistemPerwalian2020.Models.Krs
+
+@{
+    Layout = "_Layout";
+
+}
+
+
+<div class="container body-content">
+    <br>
+    <div style="display:flex;align-items:center">
+        <div style="margin-left:20px">
+            <h2>@ViewBag.namamhs / @Model.Nim</h2>
+            <p style="margin-bottom:0">Tahun Akademik @Model.Periode Semester @Model.Semester</p>
+            <input type="hidden" id="hiddennim" value="@Model.Nim" />
+            <input type="hidden" id="hiddenperiode" value="@Model.Periode" />
+            <input type="hidden" id="hiddensemester" value="@Model.Semester" />
+
+        </div>
+    </div>
+    <br />
+    <section class="blog_area">
+        <div class="container" style="margin-bottom:50px">
+            <div class="row">
+                <table id="tabeldetail" class="table table-hover">
+                    <tr>
+                        <th>Kode Makul</th>
+                        <th>Nama Makul</th>
+                        <th>SKS</th>
+                        <th>Grup</th>
+                        <th>Nilai</th>
+                    </tr>
+                    @foreach (var data in Model.detail)
+                    {
+                    <tr>
+                        <td>
+                            @data.Kode_Matkul
+                            <input class="kodemakul" type="hidden" value="@data.Kode_Matkul" />
+                            <input class="idmakul" type="hidden" value="@data.id" />
+                        </td>
+
+                        <td>
+                            @data.Nama_Makul
+                            <input class="namamakul" type="hidden" value="@data.Nama_Makul" />
+                        </td>
+
+                        <td>
+                            @data.SKS
+                            <input class="sks" type="hidden" value="@data.SKS" />
+                        </td>
+                        <td>
+                            @data.Grup
+                            <input class="grup" type="hidden" value="@data.Grup" />
+                        </td>
+
+                        <td>
+                            <select id="data_Nilai" asp-for="@data.Nilai" asp-items="@(new SelectList(ViewBag.nilai,"Value","Text"))">
+                                <option value=""></option>
+                            </select>
+                        </td>
+
+                    </tr>
+                    }
+                </table>
+                <div>
+                    <input type="hidden" id="hiddenid" asp-for="@Model.Id_krs" value="@Model.Id_krs" />
+
+                </div>
+                <div class="row" style="text-align: center;">
+                    <div class="col-md-12">
+                        <input type="button" id="btnsimpan" value="Simpan" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+             $('#btnsimpan').click(function () {
+                var listmakul = [];
+                $('#tabeldetail tbody tr').each(function (index, ele) {
+                    var makulitem = {
+                        id_makul:  $('.idmakul', this).val(),
+                        Kode_matkul: $('.kodemakul', this).val(),
+                        Nama_makul: $('.namamakul', this).val(),
+                        SKS: parseInt($('.sks', this).val()),
+                        Grup: $('.grup', this).val(),
+                        Nilai: $('#data_Nilai', this).val(),
+                    };
+                    console.log(makulitem);
+                    if (makulitem.Kode_matkul !== undefined) {
+                        listmakul.push(makulitem);
+                    }
+                });
+
+                var nim = $("#hiddennim").val();
+                var periode = $("#hiddenperiode").val();
+                var semester = $("#hiddensemester").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Krs/CreatePost',
+                    data: { detail: listmakul, nim: nim, periode: periode, semester: semester },
+                    dataType: 'json',
+                    success: function (data) {
+
+                        window.location.href = data.url;
+                    },
+                    error: function (error) {
+                        alert(error.statusText);
+                    }
+                });
+            });
+
+        });
+    </script>
+}
+

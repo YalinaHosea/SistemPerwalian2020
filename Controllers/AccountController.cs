@@ -26,15 +26,16 @@ namespace SistemPerwalian2020.Controllers
                 ViewBag.pesan = TempData["pesan"].ToString();
             }
             return View();
-            
+
         }
         [HttpPost]
-        public IActionResult Login(string id, string password){
+        public IActionResult Login(string id, string password)
+        {
 
             var data = _dsn.Login(id, password);
             if (data != null)
             {
-                if(data.Nik == "1")
+                if (data.Nik == "1")
                 {
                     HttpContext.Session.SetString("user", data.Nama);
                     HttpContext.Session.SetString("id", data.Nik);
@@ -47,12 +48,12 @@ namespace SistemPerwalian2020.Controllers
                     HttpContext.Session.SetString("role", "dosen");
                     HttpContext.Session.SetString("grup", data.Grup);
                 }
-                
+
             }
             else
             {
                 var data2 = _mhs.Login(id, password);
-                if(data2 != null)
+                if (data2 != null)
                 {
                     HttpContext.Session.SetString("user", data2.Nama_mhs);
                     HttpContext.Session.SetString("id", data2.Nim);
@@ -70,19 +71,18 @@ namespace SistemPerwalian2020.Controllers
                     return RedirectToAction("Login", "Account");
                 }
             }
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
-         public IActionResult Logout () 
-    {
-             HttpContext.Session.SetString("user", "");
-             HttpContext.Session.SetString("id", "");
-             HttpContext.Session.SetString("role", "");
-                                 HttpContext.Session.SetString("grup", "");
-          return RedirectToAction("Index","Home");
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetString("user", "");
+            HttpContext.Session.SetString("id", "");
+            HttpContext.Session.SetString("role", "");
+            HttpContext.Session.SetString("grup", "");
+            return RedirectToAction("Index", "Home");
+        }
+    }
 
-    }
-    }
-   
 }
 
 

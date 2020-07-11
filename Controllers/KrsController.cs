@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemPerwalian2020.DAL;
 using SistemPerwalian2020.Models;
 using System;
@@ -10,15 +11,16 @@ namespace SistemPerwalian2020.Controllers
     public class KrsController : Controller
     {
         private IKrs _krs;
+        private IMahasiswa mhs;
 
-        public KrsController(IKrs krs)
+        public KrsController(IKrs krs, IMahasiswa _mhs)
         {
             _krs = krs;
+            mhs = _mhs;
             // _dsn = dsn;
         }
-        public IActionResult Index()
+        public IActionResult Index(string nim, string periode, string semester)
         {
-            var nim = HttpContext.Session.GetString("id");
             if (TempData["pesan"] != null)
             {
                 ViewBag.pesan = TempData["pesan"].ToString();
@@ -29,30 +31,134 @@ namespace SistemPerwalian2020.Controllers
             }
             else
             {
-                var data = _krs.GetKrs(nim);
+                var data = _krs.GetKrs(nim, periode, semester);
                 return View(data);
             }
         }
 
-        public IActionResult EditKrs()
-        {
-            var nim = HttpContext.Session.GetString("id");
 
-            if (nim == "")
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            else
-            {
-                var data = _krs.GetKrs(nim);
-                return View(data);
-            }
-        }
 
-        public IActionResult IndexMakul()
+        public IActionResult EditKrs(string nim, string periode, string semester)
         {
-            var data = _krs.GetMakul();
+            var data = _krs.GetKrs(nim, periode, semester);
             return View(data);
+
+        }
+
+        public IActionResult IndexDosen(string grup)
+        {
+            if (TempData["pesan"] != null)
+            {
+                ViewBag.pesan = TempData["pesan"].ToString();
+            }
+            var data = _krs.GetKrsDosen(grup);
+            return View(data);
+        }
+
+        public List<SelectListItem> getlistnilai()
+        {
+            var lstnilai = new List<SelectListItem>();
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "A",
+                Text = "A"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "A-",
+                Text = "A-"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "B+",
+                Text = "B+"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "B",
+                Text = "B"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "B-",
+                Text = "B-"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "C+",
+                Text = "C+"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "C",
+                Text = "C"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "C-",
+                Text = "C-"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "D",
+                Text = "D"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "E",
+                Text = "E"
+            });
+            lstnilai.Add(new SelectListItem
+            {
+                Value = "F",
+                Text = "F"
+            });
+            return lstnilai;
+        }
+        public IActionResult CreateNilai(string nim, string periode, string semester)
+        {
+            var data = _krs.GetKrsforCreate(nim, periode, semester);
+            var maha = mhs.GetByNim(nim);
+            ViewBag.namamhs = maha.Nama_mhs;
+            var lstnilai = getlistnilai();
+            ViewBag.nilai = lstnilai;
+            return View(data);
+        }
+        [HttpPost]
+        public IActionResult CreatePost(IList<DetailTranskrip> detail, string periode, string semester, string nim)
+        {
+            try
+            {
+                mhs.CreateNilai(detail, periode, semester, nim);
+                TempData["pesan"] = Helpers.Message.GetPesan("success", "Data nilai berhasil disimpan");
+                return Json(new { result = "Redirect", url = Url.Action("IndexDosen", "Krs") });
+            }
+            catch (Exception x)
+            {
+                TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
+                return Json(new { result = "Redirect", url = Url.Action("IndexDosen", "Krs") });
+            }
+        }
+
+        public IActionResult IndexMakul(string semester, int kode)
+        {
+            var data = _krs.GetMakul(Int32.Parse(semester), kode);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult AddMakul(int kode, int id_krs)
+        {
+            try
+            {
+                _krs.AddMakul(kode, id_krs);
+                return Json(new { result = "Redirect", url = Url.Action("EditKrs", "Krs", new { nim = HttpContext.Session.GetString("id") }) });
+            }
+            catch (Exception x)
+            {
+                TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
+                return Json(new { result = "Redirect", url = Url.Action("EditKrs", "Krs", new { nim = HttpContext.Session.GetString("id") }) });
+            }
         }
 
         [HttpPost]
@@ -62,22 +168,22 @@ namespace SistemPerwalian2020.Controllers
             {
                 _krs.SaveKrs(det);
                 TempData["pesan"] = Helpers.Message.GetPesan("success", "Data KRS berhasil disimpan");
-                return Json(new { result = "Redirect", url = Url.Action("Index", "Krs") });
+                return Json(new { result = "Redirect", url = Url.Action("Index", "Krs", new { nim = HttpContext.Session.GetString("id") }) });
             }
-            catch(Exception x)
+            catch (Exception x)
             {
                 TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
-                return Json(new { result = "Redirect", url = Url.Action("Index", "Krs") });
+                return Json(new { result = "Redirect", url = Url.Action("Index", "Krs", new { nim = HttpContext.Session.GetString("id") }) });
             }
         }
 
-        public void DeleteMakul(int id, string kode)
+        public void DeleteMakul(int id, int kode)
         {
             try
             {
                 _krs.DeleteMakul(id, kode);
             }
-            catch(Exception x)
+            catch (Exception x)
             {
                 TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
             }

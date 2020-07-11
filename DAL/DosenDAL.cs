@@ -20,7 +20,7 @@ namespace SistemPerwalian2020.DAL
         {
             return _config.GetConnectionString("DefaultConnection");
         }
-        
+
 
         public Dosen Login(string id, string password)
         {
@@ -29,6 +29,15 @@ namespace SistemPerwalian2020.DAL
                 var strSql = @"select * from Dosen where NIK=@Id and Password=@Password";
                 var param = new { Id = id, Password = password };
                 return conn.QuerySingleOrDefault<Dosen>(strSql, param);
+            }
+        }
+
+        public IEnumerable<Dosen> GetDosen()
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"select * from Dosen where NIK!=1";
+                return conn.Query<Dosen>(strSql);
             }
         }
     }

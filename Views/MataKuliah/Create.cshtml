@@ -7,42 +7,213 @@
 
 <div class="container body-content">
     <br>
-    <h2> Tambah Matakuliah</h2>
+    <h2>Tambah Matakuliah</h2>
     <br>
     <br>
     <div class="row">
-        <div class="col-md-4">
-            <form asp-action="CreatePost">
+        <div class="col-md-12">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                
+                <div class="row">
+                    <div class="col-md-3">
                 <div class="form-group">
                     <label asp-for="Kode_Matkul" class="control-label">Kode Matakuliah</label>
-                    <input asp-for="Kode_Matkul" class="form-control" />
+                    <input id="kodemakul" asp-for="Kode_Matkul" class="form-control" />
                     <span asp-validation-for="Kode_Matkul" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="Nama_Makul" class="control-label">Nama Makul</label>
-                    <input asp-for="Nama_Makul" class="form-control" />
+                    <input id="namamakul" asp-for="Nama_Makul" class="form-control" />
                     <span asp-validation-for="Nama_Makul" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="SKS" class="control-label">SKS</label>
-                    <input asp-for="SKS" class="form-control" />
-                    <span asp-validation-for="SKS" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="SKS" class="control-label">SKS</label>
+                        <input id="sks" asp-for="SKS" class="form-control" />
+                        <span asp-validation-for="SKS" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="Semester" class="control-label">Syarat Semester</label>
+                        <input id="syarat" asp-for="Semester" class="form-control" />
+                        <span asp-validation-for="Semester" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="Harga" class="control-label">Harga</label>
+                        <input id="harga" asp-for="Harga" class="form-control" />
+                        <span asp-validation-for="Harga" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+               
+                <br>
+                <div class="row">
+                    <table class="table" id="tabelgrup">
+                        <thead>
+                            <tr>
+                                <th>
+                                   Grup
+                                </th>
+                                <th>
+                                    Jadwal
+                                </th>
+                                <th>
+                                    Sesi
+                                </th>
+                                <th>
+                                    Ruangan
+                                </th>
+                                <th>
+                                    Dosen
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="display: none;">
+                                <td>
+                                        <select id="dropdowngrup" class="form-control" asp-items="@(new SelectList(ViewBag.grup,"Value","Text"))">
+                                        </select>
+                                </td>
+                                <td>
+                                    <select id="dropdownjadwal" class="form-control" asp-items="@(new SelectList(ViewBag.hari,"Value","Text"))">
+                                    </select>
+                                </td>
+                                <td>
+                                    <select  id="dropdownsesi" class="form-control" asp-items="@(new SelectList(ViewBag.sesi,"Value","Text"))">
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" id="ruangan" class="pertanyaan form-control" />
+                                </td>
+                               
+                                    <td>
+                                        <select style="width: 100px;" id="dropdowndosen" class="form-control" asp-items="@(new SelectList(ViewBag.dosen,"Value","Text"))">
+                                        </select>
+                                    </td>
+                                    
+                                    <td>
+                                        <a id="btndeletegrup" class="btn btn-danger btn-sm" style="color: white;">Hapus</a>               
+
+                                    </td>
+                            </tr>
+                                <tr>
+                                    <td>
+                                            <select id="dropdowngrup" class="form-control" asp-items="@(new SelectList(ViewBag.grup,"Value","Text"))">
+                                            </select>
+                                    </td>
+                                    <td>
+                                        <select id="dropdownjadwal" class="form-control" asp-items="@(new SelectList(ViewBag.hari,"Value","Text"))">
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select  id="dropdownsesi" class="form-control" asp-items="@(new SelectList(ViewBag.sesi,"Value","Text"))">
+                                        </select>
+                                    </td>
+                                    
+                                    <td>
+                                        <input type="text" id="ruangan" class="pertanyaan form-control" />
+                                    </td>
+                                   
+                                        <td>
+                                            <select style="width: 100px;" id="dropdowndosen" class="form-control" asp-items="@(new SelectList(ViewBag.dosen,"Value","Text"))">
+                                            </select>
+                                        </td>
+                                        
+                                        <td>
+                                            <a id="btndeletegrup" class="btn btn-danger btn-sm" style="color: white;">Hapus</a>               
+
+                                        </td>
+                                </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Semester" class="control-label">Syarat Semester</label>
-                    <input asp-for="Semester" class="form-control" />
-                    <span asp-validation-for="Semester" class="text-danger"></span>
+                    <a id="btntambahgrup" class="btn btn-warning btn-sm" style="color: white;">Tambah Jadwal</a>               
+                 </div>
+                <hr>
+                <div class="form-group" style="text-align:center;">
+                    <a id="btnsimpan" class="btn btn-success btn-md" style="color: white;">Simpan</a>               
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
         </div>
     </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
     </div>
-    </div>
+    @section Scripts{
+        <script type="text/javascript">
+    
+            $(document).ready(function () {
+    
+                $('#btntambahgrup').click(function () {
+                    var $t = $("#tabelgrup");
+                    var $row = $t.find("tbody tr").first();
+                    var $newRow = $row.clone();
+                    $newRow.removeAttr("style")
+                    $newRow.appendTo($t).show();
+                });
+
+                $('#tabelgrup').on('click', '#btndeletegrup', function (e) {
+
+                    e.preventDefault();
+                    $(this).parents('tr').remove();
+                    $.ajax({
+
+                         url: $(this).attr("href"), 
+                         success: function () {
+                     }
+
+                });
+
+                    });
+
+                    $('#btnsimpan').click(function () {
+                        var listgrup = [];
+                        $('#tabelgrup tbody tr').each(function (index, ele) {
+                        var grupitem = {
+                            Grup: $('#dropdowngrup', this).val(),
+                            Jadwal: $('#dropdownjadwal', this).val(),
+                            Sesi: parseInt($('#dropdownsesi', this).val()),
+                            Ruangan: $('#ruangan', this).val(),
+                            Nik: $('#dropdowndosen', this).val(),
+                         };
+                         if(grupitem.Ruangan != ""){
+                         listgrup.push(grupitem);
+                         }
+                        });
+    
+                      var datamakul = {
+                            Kode_Matkul: $('#kodemakul').val(),
+                            Nama_Makul: $('#namamakul').val(),
+                            SKS: $('#sks').val(),    
+                            Semester: $('#syarat').val(),
+                            Harga: $('#harga').val(),
+                            grup: listgrup
+                        };
+            $(this).val('Please wait...');
+            console.log(datamakul)
+
+            $.ajax({
+                    type: 'POST',
+                    url: '/MataKuliah/CreatePost',
+                    data: { data : datamakul },
+                    dataType: 'json',
+                    success: function (data) {
+
+                        window.location.href = data.url;
+                    },
+                    error: function (error) {
+                       alert(error.statusText);
+                    }
+                });
+    });
+            });
+        </script>
+    }
+    

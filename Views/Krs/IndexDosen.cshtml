@@ -1,0 +1,52 @@
+
+ @model IEnumerable<SistemPerwalian2020.Models.KrsViewModel>
+    @using Microsoft.AspNetCore.Http
+
+@{
+    Layout = "_Layout";
+
+}
+<div class="container body-content">
+    <br>
+    <h2>Daftar KRS Mahasiswa</h2>
+    <br>
+    <br>
+    @Html.Raw(ViewBag.Pesan)
+
+    <section class="blog_area">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover">
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama</th>
+                        <th>Semester</th>
+                        <th>Periode</th>
+                        <th></th>
+                        @if (Context.Session.GetString("role") == "superadmin")
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                    @foreach (var data in Model)
+                    {
+                        <tr>
+                            <td>@data.Nim</td>
+                            <td>@data.Nama_mhs</td>
+                            <td>@data.Semester</td>
+                            <td>@data.Periode</td>
+                           <td>@Html.ActionLink("Detail", "Index", new { nim = data.Nim, periode = data.Periode, semester = data.Semester }, new { @class = "btn btn-warning btn-sm" })</td>
+                           @if (Context.Session.GetString("role") == "superadmin")
+                           {
+                               <td style="vertical-align:middle">@Html.ActionLink("Tambah Nilai", "CreateNilai", new { nim = data.Nim, periode = data.Periode, semester = data.Semester }, new { @class = "btn btn-success btn-sm" })</td>
+                           }
+                        </tr>
+
+                    }
+                   
+
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

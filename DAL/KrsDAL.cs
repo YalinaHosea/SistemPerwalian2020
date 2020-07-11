@@ -20,7 +20,7 @@ namespace SistemPerwalian2020.DAL
         {
             return _config.GetConnectionString("DefaultConnection");
         }
-public string getAngkatan(string nim)
+        public string getAngkatan(string nim)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
@@ -28,16 +28,63 @@ public string getAngkatan(string nim)
                 return conn.QueryFirstOrDefault<string>(sql);
             }
         }
-        public Krs GetKrs(string nim)
+        public Krs GetKrsforCreate(string nim, string periode, string semester)
         {
             Krs data = new Krs();
-            var tgl = DateTime.Now.Year.ToString();
-            var tglnow = DateTime.Now.Month;
+
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"select * from Krs where Nim='" + nim + "' and Periode='" + periode + "' and Semester='" + semester + "'";
+                var krs = conn.QuerySingleOrDefault<Krs>(strSql);
+
+                data.Id_krs = krs.Id_krs;
+                data.Nim = krs.Nim;
+                data.Semester = krs.Semester;
+                data.Periode = krs.Periode;
+
+                var sql2 = @"select Kode_Transkrip from Transkrip_Nilai where Nim='" + nim + "' and Periode='" + periode + "' and Semester='" + semester + "'";
+                var i = conn.QueryFirstOrDefault<int>(sql2);
+
+                if (i > 0)
+                {
+                    var sql1 = @"select g.id, g.Kode_matkul, m.Nama_makul, m.SKS, m.Harga, g.Grup, d.Nilai" +
+                                    " from Detail_KRS de inner join Grup_makul g on de.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul " +
+                                     "inner join Detail_Transkrip d on g.id=d.id_makul where de.Id_krs=" + krs.Id_krs;
+                    var det = conn.Query<DetailKrs_ViewModel>(sql1);
+                    data.detail = det;
+
+                }
+                else
+                {
+                    var sql1 = @"select g.id, g.Kode_matkul, m.Nama_makul, m.SKS, m.Harga, g.Grup" +
+                                   " from Detail_KRS de inner join Grup_makul g on de.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul " +
+                                    "where de.Id_krs=" + krs.Id_krs;
+                    var det = conn.Query<DetailKrs_ViewModel>(sql1);
+                    data.detail = det;
+                }
+
+
+            }
+            return data;
+        }
+        public Krs GetKrs(string nim, string periode2, string semester2)
+        {
+            Krs data = new Krs();
+            var tahun = DateTime.Now.Year;
+            var bulan = DateTime.Now.Month;
             var angkatan = getAngkatan(nim);
-            var semester= "";
-            var sem = (Int32.Parse(tgl) - Int32.Parse(angkatan)) * 2;
-            if(tglnow > 7) {
+            var semester = "";
+            var periode = "";
+            var sem = (Int32.Parse(tahun.ToString()) - Int32.Parse(angkatan)) * 2;
+            if (bulan > 7)
+            {
                 sem += 1;
+                periode = tahun.ToString() + "/" + (tahun + 1).ToString();
+            }
+            else
+            {
+                periode = (tahun - 1).ToString() + "/" + tahun.ToString();
+
             }
             if (sem % 2 == 0)
             {
@@ -49,34 +96,109 @@ public string getAngkatan(string nim)
             }
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Krs where Nim=" + nim + " and Semester='" + semester + "'";
-                var krs = conn.QuerySingleOrDefault<Krs>(strSql);
+                Krs krs = new Krs();
+                if (periode2 == null && semester2 == null)
+                {
+                    var strSql = @"select * from Krs where Nim=" + nim + " and Periode='" + periode + "' and Semester='" + semester + "'";
+                    krs = conn.QuerySingleOrDefault<Krs>(strSql);
+                }
+                else
+                {
+                    var strSql = @"select * from Krs where Nim=" + nim + " and Periode='" + periode2 + "' and Semester='" + semester2 + "'";
+                    krs = conn.QuerySingleOrDefault<Krs>(strSql);
+                }
+
                 if (krs == null)
                 {
-                    var sql2 = @"insert into Krs (Nim, Semester) values(@nim, @semester)";
-                    var param = new { nim = nim, semester = semester };
+                    var sql2 = @"insert into Krs (Nim, Semester, Periode) values(@nim, @semester, @periode)";
+                    var param = new { nim = nim, semester = semester, periode = periode };
                     conn.Execute(sql2, param);
 
-                    var sql3 = @"select * from Krs where Nim=" + nim + " and Semester='" + semester + "'";
-                    krs = conn.QuerySingleOrDefault<Krs>(strSql);
+                    var sql3 = @"select * from Krs where Nim=" + nim + " and Periode='" + periode + "' and Semester='" + semester + "'";
+                    krs = conn.QuerySingleOrDefault<Krs>(sql3);
                 }
                 data.Id_krs = krs.Id_krs;
                 data.Nim = krs.Nim;
                 data.Semester = krs.Semester;
+                data.Periode = krs.Periode;
 
-                var sql1 = @"select m.Kode_matkul, m.Nama_makul, m.SKS from Detail_KRS d inner join Mata_Kuliah m on d.Kode_matkul=m.Kode_matkul where d.Id_krs=" + krs.Id_krs;
+                var sql1 = @"select g.id, g.Kode_matkul, m.Nama_makul, m.SKS, m.Harga, g.Grup, g.Jadwal, g.Sesi, g.Ruangan, d.Nama from Detail_KRS de inner join Grup_makul g on de.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul inner join Dosen d on g.Nik=d.Nik where de.Id_krs=" + krs.Id_krs;
                 var det = conn.Query<DetailKrs_ViewModel>(sql1);
                 data.detail = det;
             }
             return data;
         }
-
-        public IEnumerable<MataKuliah> GetMakul()
+        public IEnumerable<KrsViewModel> GetKrsDosen(string grup)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var sql1 = @"select * from Mata_Kuliah ";
-                return conn.Query<MataKuliah>(sql1);
+                var sql = "";
+                if(grup == null) {
+                 sql = @"select k.Nim, m.Nama_mhs, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim";
+                }
+                else{
+                 sql = @"select k.Nim, m.Nama_mhs, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim where m.Grup='" + grup + "'";
+                }
+                return conn.Query<KrsViewModel>(sql);
+            }
+        }
+
+        public IList<MakulViewModel> GetMakul(int semester, int kode)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+
+                IList<MakulViewModel> data = new List<MakulViewModel>();
+                // IList<MakulViewModel> data2 = new List<MakulViewModel>();
+                IList<int> detail;
+                IList<string> kodemakul;
+
+
+                var sql = @"select id_makul from Detail_KRS where Id_krs=" + kode;
+                detail = (IList<int>)conn.Query<int>(sql);
+                var sql2 = @"select m.Kode_matkul from Detail_KRS d inner join Grup_makul g on d.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul where Id_krs=" + kode;
+                kodemakul = (IList<string>)conn.Query<string>(sql2);
+
+                var sql1 = @"select g.id, m.Kode_matkul, m.Nama_makul, m.SKS, m.Harga, g.Grup, g.Jadwal, g.Sesi, g.Ruangan, d.Nama from Mata_Kuliah m inner join Grup_makul g on m.Kode_matkul=g.Kode_matkul inner join Dosen d on g.Nik=d.Nik where m.Semester=" + semester;
+                data = (IList<MakulViewModel>)conn.Query<MakulViewModel>(sql1);
+
+                foreach (var a in detail)
+                {
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        if (data[i].id == a)
+                        {
+                            data.RemoveAt(i);
+                        }
+                    }
+                }
+                foreach (var a in kodemakul)
+                {
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        if (data[i].Kode_Matkul == a)
+                        {
+                            data.RemoveAt(i);
+                        }
+                    }
+                }
+                return data;
+            }
+        }
+        public void AddMakul(int id, int id_krs)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var sql = @"insert into Detail_KRS (Id_krs,id_makul) values(@krs,@id)";
+                var param = new { krs = id_krs, id = id };
+                try
+                {
+                    conn.Execute(sql, param);
+                }
+                catch (SqlException x)
+                {
+                    throw new Exception($"error : {x.Message}");
+                }
             }
         }
 
@@ -107,11 +229,11 @@ public string getAngkatan(string nim)
 
         }
 
-        public void DeleteMakul(int id, string kode)
+        public void DeleteMakul(int id, int kode)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var sql = @"delete from Detail_Krs where Id_krs=" + id + " and Kode_matkul='" + kode + "'";
+                var sql = @"delete from Detail_Krs where Id_krs=" + id + " and id_makul=" + kode;
                 try
                 {
                     conn.Execute(sql);
@@ -122,5 +244,7 @@ public string getAngkatan(string nim)
                 }
             }
         }
+
+
     }
 }

@@ -26,7 +26,7 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Mahasiswa order by Nama_mhs";
+                var strSql = @"select * from Mahasiswa order by Nim";
                 return conn.Query<Mahasiswa>(strSql);
             }
         }
@@ -48,7 +48,12 @@ namespace SistemPerwalian2020.DAL
 
         public Mahasiswa GetByNim(string nim)
         {
-            throw new System.NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"select * from Mahasiswa where NIM=@Id";
+                var param = new { Id = nim };
+                return conn.QuerySingleOrDefault<Mahasiswa>(strSql, param);
+            }
         }
 
         public void Insert(Mahasiswa mhs)
@@ -70,43 +75,49 @@ namespace SistemPerwalian2020.DAL
                 return conn.QuerySingleOrDefault<Mahasiswa>(strSql, param);
             }
         }
+        public IEnumerable<MakulViewModel> GetMakul(string periode, string semester)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var sqlkode = @"select Id_Krs from KRS where Periode='" + periode + "' and Semester='" + semester + "'";
+                var kode = conn.QueryFirstOrDefault<int>(sqlkode);
 
-        public TranskripViewModel GetNilai(string nim, string role)
+                var sql1 = @"select g.id, m.Kode_matkul, m.Nama_makul, m.SKS, m.Harga, g.Grup, g.Jadwal, g.Sesi, g.Ruangan, d.Nama" +
+                " from Grup_makul g inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul inner join Dosen d on g.Nik=d.Nik inner join Detail_KRS det on det.id_makul = g.id where det.Id_krs=" + kode;
+                return conn.Query<MakulViewModel>(sql1);
+            }
+        }
+        public string getAngkatan(string nim)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var sql = @"select Angkatan from Mahasiswa where NIM='" + nim + "'";
+                return conn.QueryFirstOrDefault<string>(sql);
+            }
+        }
+        public TranskripViewModel GetNilai(string nim, string role, string state)
         {
             TranskripViewModel data = new TranskripViewModel();
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                TranskripNilai nilai = new TranskripNilai();
+                IList<TranskripNilai> nilai;
                 var strSql = @"select * from Transkrip_Nilai where NIM=" + nim;
-                nilai = conn.QueryFirstOrDefault<TranskripNilai>(strSql);
-                if (role == "superadmin" && nilai == null)
-                {
-                    var sql = @"insert into Transkrip_Nilai(Nim) values(@nim)";
-                    var param = new { nim = nim };
-                    conn.Execute(sql, param);
+                nilai = (IList<TranskripNilai>)conn.Query<TranskripNilai>(strSql);
 
-                    var sql2 = @"select * from Transkrip_Nilai where NIM=" + nim;
-                    nilai = conn.QueryFirstOrDefault<TranskripNilai>(strSql);
-                    data.transkrip = nilai;
-                }
-                else if(role == "superadmin" || role == "dosen" && nilai != null)
+                if (nilai.Count == 0)
                 {
-                    data.transkrip = nilai;
+                    return null;
                 }
-                // else
-                // {
-                //     return null;
-                // }
+                data.transkrip = nilai;
 
                 var strSql2 = @"select * from Mahasiswa where NIM=" + nim;
                 Mahasiswa mhs = new Mahasiswa();
                 mhs = conn.QueryFirstOrDefault<Mahasiswa>(strSql2);
                 data.mahasiswa = mhs;
 
-                var strSql3 = @"select d.Kode_detail, d.Kode_matkul, m.Nama_makul, m.SKS, d.Nilai, d.Bobot, d.Kualitas from Detail_Transkrip d inner join Mata_Kuliah m on d.Kode_matkul=m.Kode_matkul where d.Kode_transkrip=" + nilai.Kode_Transkrip;
+                var strSql3 = @"select d.id_makul, d.Kode_detail, g.Kode_matkul, m.Nama_makul, m.SKS, g.Grup, d.Nilai, d.Bobot, d.Kualitas from Detail_Transkrip d inner join Grup_makul g on d.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul";
                 var detail = conn.Query<DetailTranskrip>(strSql3);
                 data.detail = detail;
-                //return conn.Query<Mahasiswa>(strSql);
                 return data;
             }
         }
@@ -170,23 +181,36 @@ namespace SistemPerwalian2020.DAL
             return bobot;
         }
 
-        public void CreateNilai(IList<DetailTranskrip> det)
+        public void CreateNilai(IList<DetailTranskrip> det, string periode, string semester, string nim)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                foreach(var data in det)
+                var kode = "";
+                var sql3 = @"select Kode_Transkrip from Transkrip_Nilai where Nim='" + nim + "' and Periode='" + periode + "' and Semester='" + semester + "'";
+                kode = conn.QueryFirstOrDefault<string>(sql3);
+
+                if (kode == null)
                 {
-                    var sql1 = @"select * from Detail_Transkrip where Kode_transkrip=" + data.Kode_transkrip + " and Kode_matkul='" + data.Kode_matkul + "'";
-                    var data2 = conn.QuerySingleOrDefault<DetailTranskrip>(sql1);
+                    var sqlupdate = @"insert into Transkrip_Nilai(Nim,Periode,Semester) values(@nim,@periode,@semester)";
+                    var param1 = new { nim = nim, periode = periode, semester = semester };
+                    conn.Execute(sqlupdate, param1);
+
+                    var sql2 = @"select Kode_Transkrip from Transkrip_Nilai where Nim='" + nim + "' and Periode='" + periode + "' and Semester='" + semester + "'";
+                    kode = conn.QueryFirstOrDefault<string>(sql2);
+                }
+                foreach (var data in det)
+                {
                     var sks = getSKSbyKode(data.Kode_matkul);
                     var bobot = getBobot(data.Nilai);
                     var kualitas = sks * bobot;
 
-                    if (data2 == null)
+                    var sqlcek = @"select Kode_detail from Detail_Transkrip where Kode_transkrip=" + kode + " and id_makul=" + data.id_makul;
+                    var kodet = conn.QueryFirstOrDefault<string>(sqlcek);
+
+                    if (kodet == null)
                     {
-                        
-                        var sql = @"insert into Detail_Transkrip (Kode_transkrip, Kode_matkul,Nilai,bobot,kualitas) values(@id, @kode,@nilai,@bobot,@kualitas)";
-                        var param = new { id = data.Kode_transkrip, kode = data.Kode_matkul, nilai = data.Nilai, bobot = bobot, kualitas = kualitas};
+                        var sql = @"insert into Detail_Transkrip (Kode_transkrip, id_makul,Nilai,bobot,kualitas) values(@id, @kode,@nilai,@bobot,@kualitas)";
+                        var param = new { id = kode, kode = data.id_makul, nilai = data.Nilai, bobot = bobot, kualitas = kualitas };
                         try
                         {
                             conn.Execute(sql, param);
@@ -198,16 +222,17 @@ namespace SistemPerwalian2020.DAL
                     }
                     else
                     {
-                        var sql2 = @"update Detail_Transkrip set Nilai='" + data.Nilai + "', bobot=@bobot, kualitas=@kualitas where Kode_transkrip=" + data.Kode_transkrip + " and Kode_matkul='" + data.Kode_matkul + "'";
-                        var param = new { bobot = bobot, kualitas = kualitas };
+                        var sql = @"update Detail_Transkrip set Nilai=@nilai, bobot=@bobot, kualitas=@kualitas where Kode_detail=" + kodet;
+                        var param = new { nilai = data.Nilai, bobot = bobot, kualitas = kualitas };
                         try
                         {
-                            conn.Execute(sql2, param);
+                            conn.Execute(sql, param);
                         }
                         catch (SqlException x)
                         {
                             throw new Exception($"error : {x.Message}");
-                        };
+                        }
+
                     }
                 }
             }

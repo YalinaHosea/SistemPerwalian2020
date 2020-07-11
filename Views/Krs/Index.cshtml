@@ -1,5 +1,6 @@
 
  @model SistemPerwalian2020.Models.Krs
+@using Microsoft.AspNetCore.Http
 
 @{
     Layout = "_Layout";
@@ -8,19 +9,23 @@
 <div class="container body-content">
     <br>
     <h2>@Model.Nim</h2>
-    <h2>Semester : @Model.Semester</h2>
+    <h2>Semester : @Model.Semester - Periode : @Model.Periode</h2>
     <br>
     <br>
     @Html.Raw(ViewBag.Pesan)
 
     <section class="blog_area">
-        <div class="container">
+        <div class="container" style="margin-bottom: 50px;">
             <div class="row">
                 <table class="table table-hover">
                     <tr>
                         <th>Kode Mata Kuliah</th>
                         <th>Nama Mata Kuliah</th>
                         <th>SKS</th>
+                        <th>Harga</th>
+                        <th>Grup</th>
+                        <th>Jadwal dan Ruangan</th>
+                        <th>Dosen</th>
                     </tr>
                     @foreach (var data in Model.detail)
                     {
@@ -28,15 +33,23 @@
                             <td>@data.Kode_Matkul</td>
                             <td>@data.Nama_Makul</td>
                             <td>@data.SKS</td>
+                            <td>@data.Harga</td>
+                            <td>@data.Grup</td>
+                            <td>@data.Jadwal Sesi @data.Sesi - @data.Ruangan</td>
+                            <td>@data.Nama</td>
                         </tr>
 
                     }
-                    <tr>
-                        <td> <a href="@Url.Action("EditKrs", "Krs")" class="btn btn-warning">Ubah Data KRS</a></td>
-                    </tr>
+                   
 
                 </table>
             </div>
+             @if (@Context.Session.GetString("role") == "mahasiswa")
+            {
+            <div class="form-group">
+                @Html.ActionLink("Ubah data KRS", "EditKrs", new { nim = @Model.Nim, periode = @Model.Periode, semester = @Model.Semester }, new { @class = "btn btn-warning btn-sm" })
+             </div>
+            }
         </div>
     </section>
 </div>

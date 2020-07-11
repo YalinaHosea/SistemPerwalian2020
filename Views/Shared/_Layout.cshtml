@@ -62,12 +62,17 @@
                               <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","MataKuliah")">Daftar Matakuliah</a></li>
 
                              }
+                              @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") == "superadmin")
+                             {
+                              <li class="nav-item"><a class="nav-link" href="@Url.Action("IndexDosen","Krs", new { grup = @Context.Session.GetString("grup")})">Daftar Krs Mahasiswa</a></li>
+
+                             }
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Jadwal")">Jadwal Perwalian</a></li>
                            @if (@Context.Session.GetString("role") == "mahasiswa")
                             {
                                 <li class="nav-item"><a class="nav-link" href="@Url.Action("CatatanMahasiswa", "Jadwal", new { nim = @Context.Session.GetString("id") })">Catatan Perwalian</a></li>
                                 <li class="nav-item"><a class="nav-link" href="@Url.Action("Nilai", "Mahasiswa", new { id = @Context.Session.GetString("id") })">Lihat Nilai</a></li>
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Krs")">KRS</a></li>
+                                <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Krs", new { nim = @Context.Session.GetString("id") })">KRS</a></li>
                             }
 
                         </ul>

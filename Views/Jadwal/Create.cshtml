@@ -1,4 +1,5 @@
 @model SistemPerwalian2020.Models.Jadwal
+@using Microsoft.AspNetCore.Http
 
 @{
     ViewData["Title"] = "Create";
@@ -25,11 +26,19 @@
                     <input asp-for="Prodi" class="form-control" />
                     <span asp-validation-for="Prodi" class="text-danger"></span>
                 </div>
+                @if(Context.Session.GetString("role") == "superadmin")
+                {
                 <div class="form-group">
                     <label asp-for="Grup" class="control-label">Grup</label>
-                    <input asp-for="Grup" class="form-control" />
-                    <span asp-validation-for="Grup" class="text-danger"></span>
+                    <br>
+                    <select class="form-control" asp-for="Grup" asp-items="@(new SelectList(ViewBag.grup,"Value","Text"))">
+                        <option value=""></option>
+                    </select>
                 </div>
+                <br>
+                <br>
+                 }
+                             
                 <div class="form-group">
                     <label asp-for="Waktu" class="control-label">Waktu</label>
                     <input asp-for="Waktu" type="datetime-local" class="form-control" />

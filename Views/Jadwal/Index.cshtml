@@ -15,7 +15,7 @@
 
     <section class="blog_area">
         <div class="container" style="margin-bottom:100px">
-            @if (@Context.Session.GetString("role") == "dosen")
+            @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") == "superadmin")
             {
                 <p>
                     <a href="@Url.Action("Create", "Jadwal")" class="btn btn-success">Tambah Jadwal</a>
@@ -37,7 +37,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Waktu)
                             </th>
-                            @if (@Context.Session.GetString("role") == "dosen")
+                            @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") == "superadmin")
                             {
                                 <th></th>
                                 <th></th>
@@ -49,7 +49,7 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            if(item.Grup == Context.Session.GetString("grup") || Context.Session.GetString("grup") == null)
+                            if(item.Grup == Context.Session.GetString("grup") || Context.Session.GetString("grup") == ""  || Context.Session.GetString("grup") == null)
                         {
                             <tr>
                                 <td>
@@ -64,7 +64,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Waktu)
                                 </td>
-                                @if (@Context.Session.GetString("role") == "dosen")
+                                @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") == "superadmin")
                                 {
                                     <td>
                                         @Html.ActionLink("Edit", "Edit", new { id = item.Kode_jadwal }, new { @class = "btn btn-warning btn-sm" }) |
@@ -72,10 +72,13 @@
 
                                     </td>
 
-                                    <td> @Html.ActionLink("Presensi", "Presensi", new { id = item.Kode_jadwal, grup = item.Grup }, new { @class = "btn btn-primary btn-sm" })</td>
+                                    
+                                }
+                                @if (@Context.Session.GetString("role") == "dosen")
+                                {
+                                <td> @Html.ActionLink("Presensi", "Presensi", new { id = item.Kode_jadwal, grup = item.Grup }, new { @class = "btn btn-primary btn-sm" })</td>
                                     <td> @Html.ActionLink("Catatan", "Catatan", new { id = item.Kode_jadwal, grup = item.Grup }, new { @class = "btn btn-success btn-sm" })</td>
                                 }
-                               
                             </tr>
                         }
                         }

@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemPerwalian2020.DAL;
 using SistemPerwalian2020.Models;
 using System;
@@ -27,7 +29,7 @@ namespace SistemPerwalian2020.Controllers
             return View(data);
         }
 
- 
+
         public IActionResult Presensi(int id, string grup)
         {
             var data = _jdw.GetPresensi(id, grup);
@@ -77,25 +79,51 @@ namespace SistemPerwalian2020.Controllers
             };
         }
 
+        public List<SelectListItem> getlistgrup()
+        {
+            var lstgrup = new List<SelectListItem>();
+            lstgrup.Add(new SelectListItem
+            {
+                Value = "A",
+                Text = "A"
+            });
+            lstgrup.Add(new SelectListItem
+            {
+                Value = "B",
+                Text = "B"
+            });
+            lstgrup.Add(new SelectListItem
+            {
+                Value = "C",
+                Text = "C"
+            });
 
+            return lstgrup;
+        }
         public IActionResult Create()
         {
+            var lstgrup = getlistgrup();
+            ViewBag.grup = lstgrup;
             return View();
         }
 
         [HttpPost]
         public IActionResult CreatePost(Jadwal jdw)
         {
+            if (HttpContext.Session.GetString("role") == "dosen")
+            {
+                jdw.Grup = HttpContext.Session.GetString("grup");
+            }
             try
             {
                 _jdw.Insert(jdw);
                 TempData["pesan"] = Helpers.Message.GetPesan("success", "sukses menambah data jadwal");
 
             }
-            catch(Exception x)
+            catch (Exception x)
             {
                 TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
-                
+
             }
             return Redirect("Index");
         }

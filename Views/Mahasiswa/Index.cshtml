@@ -24,14 +24,10 @@
                         <th>No.HP</th>
                         <th>No.HP Orangtua</th>
                         <th></th>
-                        @if (Context.Session.GetString("role") == "superadmin")
-                        {
-                            <th></th>
-                        }
                     </tr>
                     @foreach (var data in Model)
                     {
-                        if(data.Grup == Context.Session.GetString("grup") || Context.Session.GetString("grup") == "")
+                        if(data.Grup == Context.Session.GetString("grup") || Context.Session.GetString("grup") == "" || Context.Session.GetString("grup") == null)
                         {
                         var src = "/Images/" + data.Nim + ".jpg";
                         <tr>
@@ -43,11 +39,8 @@
                              <td style="vertical-align:middle">@data.Angkatan</td>
                             <td style="vertical-align:middle">@data.No_hp_mhs</td>
                             <td style="vertical-align:middle">@data.No_hp_ortu</td>
-                            <td style="vertical-align:middle"> @Html.ActionLink("Lihat Nilai", "Nilai", new { id = data.Nim, role = @Context.Session.GetString("role") }, new { @class = "btn btn-warning btn-round" })</td>
-                            @if (Context.Session.GetString("role") == "superadmin")
-                            {
-                                <td style="vertical-align:middle">@Html.ActionLink("Tambah Nilai", "CreateNilai", new { id = data.Nim, role = @Context.Session.GetString("role") }, new { @class = "btn btn-success btn-round" })</td>
-                            }
+                            <td style="vertical-align:middle"> @Html.ActionLink("Lihat Nilai", "Nilai", new { id = data.Nim }, new { @class = "btn btn-warning btn-round" })</td>
+                            
                         </tr>
                         }
                     }

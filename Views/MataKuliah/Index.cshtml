@@ -1,4 +1,4 @@
-@model IEnumerable<SistemPerwalian2020.Models.MataKuliah>
+@model SistemPerwalian2020.Models.MakulVM
 
 @{
     ViewData["Title"] = "Index";
@@ -43,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.makul)
                         {
                             
                             <tr>
@@ -67,9 +67,33 @@
                                     <td align="center" style="vertical-align:middle">
                                         @Html.ActionLink("Delete", "Delete", new { kode = item.Kode_Matkul }, new { @class = "btn btn-danger btn-sm" })
 
-                                    </td>
-
-                                 
+                                    </td>      
+                            </tr>
+                            <tr>
+                                <td>
+                                <table>
+                                   
+                    <tbody>
+                        @foreach (var item2 in Model.grup)
+                        {
+                            if(item.Kode_Matkul == item2.Kode_matkul)
+                            {
+                            <tr>
+                                <td style="vertical-align:middle">
+                                    Grup @item2.Grup
+                                </td>
+                                <td style="vertical-align:middle">
+                                    @item2.Jadwal sesi @item2.Sesi - @item2.Ruangan
+                                </td>
+                                <td style="vertical-align:middle">
+                                    @item2.Nama
+                                </td>
+                            </tr>
+                            }
+                        }
+                                            </tbody>
+                                </table>
+                                </td>
                             </tr>
                         
                         }

@@ -4,6 +4,8 @@
     Layout = "_Layout";
 
 }
+@using Microsoft.AspNetCore.Http
+
 <div class="container body-content">
     <br>
     <h2>@Model.Nim</h2>
@@ -14,12 +16,16 @@
 
     <section class="blog_area">
         <div class="container">
-            <div class="row">
+            <div class="col-md-12">
                 <table id="tabeldetail" class="table table-hover">
                     <tr>
                         <th>Kode Mata Kuliah</th>
                         <th>Nama Mata Kuliah</th>
                         <th>SKS</th>
+                        <th>Harga</th>
+                        <th>Grup</th>
+                        <th>Jadwal dan Ruangan</th>
+                        <th>Dosen</th>
                         <th></th>
                     </tr>
                     @foreach (var data in Model.detail)
@@ -37,7 +43,26 @@
                                 @data.SKS
                                 <input class="sksmakul" type="hidden" value="@data.SKS" />
                             </td>
-                            <td>@Html.ActionLink("Hapus", "DeleteMakul", "Krs", new { id = Model.Id_krs, kode = data.Kode_Matkul }, htmlAttributes: new { @class = "BtnRemove btn btn-danger btn-xs pull-right" })</td>
+                            <td>
+                                @data.Harga
+                                <input class="hargamakul" type="hidden" value="@data.Harga" />
+                            </td>
+                            <td>
+                                @data.Grup
+                                <input class="grupmakul" type="hidden" value="@data.Grup" />
+                            </td>
+                            <td>
+                                @data.Jadwal Sesi @data.Sesi - @data.Ruangan
+                                <input class="jadwalmakul" type="hidden" value="@data.Jadwal" />
+                                <input class="sesimakul" type="hidden" value="@data.Sesi" />
+                                <input class="ruanganmakul" type="hidden" value="@data.Ruangan" />
+
+                            </td>
+                            <td>
+                                @data.Nama
+                                <input class="dosenmakul" type="hidden" value="@data.Nama" />
+                            </td>
+                            <td>@Html.ActionLink("Hapus", "DeleteMakul", "Krs", new { id = Model.Id_krs, kode = data.id }, htmlAttributes: new { @class = "BtnRemove btn btn-danger btn-sm pull-right" })</td>
                         </tr>
 
                     }
@@ -46,27 +71,26 @@
 
                 </table>
                 <div>
+                    @{
+                        var semester = @Context.Session.GetString("semester");
+                    }
                     <input type="hidden" id="hiddenid" asp-for="@Model.Id_krs" value="@Model.Id_krs" />
-
+                    <input type="hidden" id="hiddensemester" value="@semester" />
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type='button' id='btntambahmakul' value='Tambah Makul' class='BtnTambah btn btn-success btn-sm pull-left' />
-                    </div>
-                    <div class="col-md-6">
-                        <input type="button" id="btnsimpan" value="Simpan" class="btn btn-primary" />
-                    </div>
+                <div class="form-group">
+                    <input type='button' id='btntambahmakul' value='Tambah Makul' class='BtnTambah btn btn-success btn-sm' />
+                </div> 
+                <hr>
+                <div class="form-group" style="text-align:center;">
+                    @Html.ActionLink("Simpan", "Index", "Krs", new { nim = Model.Nim }, htmlAttributes: new { @class = "btn btn-primary" })
                 </div>
-                <br />
-                <br />
-                <br />
             </div>
         </div>
     </section>
 
     <div class="modal fade" id="modalmakul">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal-dialog" style="max-width: 800px !important;">
+            <div class="modal-content" style="width:800px">
                 <div class="modal-header">
                     <a href="#" class="close" data-dismiss="modal">&times;</a>
                 </div>
@@ -74,10 +98,7 @@
 
 
                 </div>
-
-
             </div>
-
         </div>
 
     </div>
@@ -88,15 +109,24 @@
 
         $(document).ready(function () {
 
-            selectmakul = function (kode, nama, sks) {
-                $('#tabeldetail > tbody:last-child').append("<tr><td>" + kode + "<input class='kodemakul' type='hidden' value='" + kode + "' /></td><td>" + nama + "<input class='namamakul' type='hidden' value='" + nama + "' /></td><td>" + sks + "<input class='sksmakul' type='hidden' value='" + sks + "' /></td><td><input type='button' id='deletemakul' value='Hapus' class='BtnRemove btn btn-danger btn-xs pull-right' /></td></tr>")
+            selectmakul = function (id) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Krs/AddMakul',
+                    data: { kode : id, id_krs : $('#hiddenid').val() },
+                    dataType: 'json',
+                    success: function (data) {
 
-                $("#modalmakul").modal("hide");
-
+                        window.location.href = data.url;
+                    },
+                    error: function (error) {
+                       alert(error.statusText);
+                    }
+                });
             }
 
             $('#btntambahmakul').click(function () {
-                var url = "/Krs/IndexMakul"
+                var url = "/Krs/IndexMakul/?semester=" + $("#hiddensemester").val() + "&kode=" + $('#hiddenid').val();
 
                 $("#modalmakulbody").load(url, function () {
                     $("#modalmakul").modal("show");
@@ -114,40 +144,8 @@
                        alert('data makul berhasil dihapus')
 
                     }
-
-                });
-
-            });
-
-            $('#btnsimpan').click(function () {
-                var listmakul = [];
-                $('#tabeldetail tbody tr').each(function (index, ele) {
-                    var makulitem = {
-                        Id_krs: $('#hiddenid').val(),
-                        Kode_Matkul: $('.kodemakul', this).val(),
-                        Nama_Makul: $('.namamakul', this).val(),
-                        SKS: parseInt($('.sksmakul', this).val())
-                    };
-                    if (makulitem.Kode_Matkul !== undefined) {
-                        listmakul.push(makulitem);
-                    }
-                });
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/Krs/SaveKrs',
-                    data: { det : listmakul },
-                    dataType: 'json',
-                    success: function (data) {
-
-                        window.location.href = data.url;
-                    },
-                    error: function (error) {
-                       alert(error.statusText);
-                    }
                 });
             });
-
         });
     </script>
 }

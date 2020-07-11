@@ -1,0 +1,32 @@
+@model IEnumerable<SistemPerwalian2020.Models.MakulViewModel>
+    @using Microsoft.AspNetCore.Http
+    
+    
+    <div class="container">
+        <div class="row">
+            <table class="table table-hover">
+                <tr>
+                    <th>Kode Makul</th>
+                    <th>Nama Makul</th>
+                    <th>SKS</th>
+                    <th>Grup</th>
+                    <th>Dosen</th>
+                    <th></th>
+                </tr>
+                @foreach (var data in Model)
+                {
+                    <tr>
+                        <td>@data.Kode_Matkul</td>
+                        <td>@data.Nama_Makul</td>
+                        <td>@data.SKS</td>
+                        <td>@data.Grup</td>
+                        <td>@data.Nama</td>
+                       
+                        <td> <a class="DefaultEditBtn btn btn-success btn-sm" onclick="selectmakul('@data.Kode_Matkul', '@data.Nama_Makul', '@data.SKS', '@data.Grup', '@data.id')"><span style="color:white">Pilih</span></a></td>
+                    </tr>
+                
+                }
+            </table>
+        </div>
+    </div>
+    
