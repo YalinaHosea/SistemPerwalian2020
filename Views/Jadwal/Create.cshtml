@@ -25,8 +25,18 @@
                     <label asp-for="Prodi" class="control-label">Prodi</label>
                     <input asp-for="Prodi" class="form-control" />
                     <span asp-validation-for="Prodi" class="text-danger"></span>
+
                 </div>
-                @if(Context.Session.GetString("role") == "superadmin")
+                 <div class="form-group">
+                    <label asp-for="Angkatan" class="control-label">Angkatan</label>
+                    <br>
+                    <select class="form-control" asp-for="Angkatan" asp-items="@(new SelectList(ViewBag.angkatan,"Value","Text"))">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <br>
+                <br>
+                @* @if(Context.Session.GetString("role") == "superadmin")
                 {
                 <div class="form-group">
                     <label asp-for="Grup" class="control-label">Grup</label>
@@ -37,7 +47,7 @@
                 </div>
                 <br>
                 <br>
-                 }
+                 } *@
                              
                 <div class="form-group">
                     <label asp-for="Waktu" class="control-label">Waktu</label>

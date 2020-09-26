@@ -6,7 +6,8 @@ namespace SistemPerwalian2020.Models{
         public int Kode_jadwal{get; set; }
         public string Periode {get; set; }
         public string Prodi {get; set; }
-        public string Grup {get; set; }
+        public string Angkatan {get;set;}
+        public string Dosen {get; set; }
         public DateTime Waktu {get; set; }
     }
 }

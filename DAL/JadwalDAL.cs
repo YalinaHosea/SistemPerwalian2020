@@ -43,7 +43,7 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Jadwal_Perwalian order by Kode_Jadwal";
+                var strSql = @"select j.Kode_Jadwal, j.Periode ,j.Angkatan, d.Nama as Dosen, j.Prodi, j.Waktu from Jadwal_Perwalian j inner join Angkatan a on j.Angkatan=a.Angkatan inner join Dosen d on a.Wali=d.Nik order by j.Kode_Jadwal";
                 return conn.Query<Jadwal>(strSql);
             }
         }
@@ -181,8 +181,8 @@ namespace SistemPerwalian2020.DAL
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
 
-                var strsql = @"insert into Jadwal_Perwalian (Periode,Prodi,Grup,Waktu) values(@periode, @prodi, @grup, @waktu)";
-                var param = new { periode = mhs.Periode, prodi = mhs.Prodi, grup = mhs.Grup, waktu = mhs.Waktu };
+                var strsql = @"insert into Jadwal_Perwalian (Periode,Prodi,Angkatan,Waktu) values(@periode, @prodi, @angkatan, @waktu)";
+                var param = new { periode = mhs.Periode, prodi = mhs.Prodi, angkatan = mhs.Angkatan, waktu = mhs.Waktu };
                 try
                 {
                     conn.Execute(strsql, param);
@@ -200,8 +200,8 @@ namespace SistemPerwalian2020.DAL
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
 
-                var strsql = @"update Jadwal_Perwalian set Periode=@periode, Prodi=@prodi, Grup=@grup, Waktu=@waktu where Kode_jadwal=" + mhs.Kode_jadwal;
-                var param = new { periode = mhs.Periode, prodi = mhs.Prodi, grup = mhs.Grup, waktu = mhs.Waktu };
+                var strsql = @"update Jadwal_Perwalian set Periode=@periode, Prodi=@prodi, Dosen=@dosen, Waktu=@waktu where Kode_jadwal=" + mhs.Kode_jadwal;
+                var param = new { periode = mhs.Periode, prodi = mhs.Prodi, dosen = mhs.Dosen, waktu = mhs.Waktu };
                 try
                 {
                     conn.Execute(strsql, param);
@@ -223,6 +223,20 @@ namespace SistemPerwalian2020.DAL
             }
         }
 
-        
+        public IEnumerable<Angkatan> getAngkatan(string nik)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                if(nik != null) {
+var strSql = @"select * from Angkatan where Wali='" + nik + "'";
+                return conn.Query<Angkatan>(strSql);
+                }
+                else{
+var strSql = @"select * from Angkatan";
+                return conn.Query<Angkatan>(strSql);
+                }
+                
+            }
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace SistemPerwalian2020.Controllers
                     HttpContext.Session.SetString("user", data.Nama);
                     HttpContext.Session.SetString("id", data.Nik);
                     HttpContext.Session.SetString("role", "dosen");
-                    HttpContext.Session.SetString("grup", data.Grup);
+                    // HttpContext.Session.SetString("grup", data.Grup);
                 }
 
             }
@@ -58,12 +58,15 @@ namespace SistemPerwalian2020.Controllers
                     HttpContext.Session.SetString("user", data2.Nama_mhs);
                     HttpContext.Session.SetString("id", data2.Nim);
                     HttpContext.Session.SetString("role", "mahasiswa");
-                    HttpContext.Session.SetString("grup", data2.Grup);
+                    // HttpContext.Session.SetString("grup", "");
                     var angkatan = Int32.Parse(data2.Angkatan);
+                                        HttpContext.Session.SetString("angkatan", angkatan.ToString());
+
                     var tgl = Int32.Parse(DateTime.Now.Year.ToString());
                     var semester = (tgl - angkatan) * 2;
                     HttpContext.Session.SetString("semester", semester.ToString());
-
+                    var wali = _mhs.getWali(data2.Angkatan);
+                    HttpContext.Session.SetString("wali", wali);
                 }
                 else
                 {
@@ -78,7 +81,7 @@ namespace SistemPerwalian2020.Controllers
             HttpContext.Session.SetString("user", "");
             HttpContext.Session.SetString("id", "");
             HttpContext.Session.SetString("role", "");
-            HttpContext.Session.SetString("grup", "");
+            HttpContext.Session.SetString("angkatan", "");
             return RedirectToAction("Index", "Home");
         }
     }

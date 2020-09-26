@@ -13,8 +13,10 @@ namespace SistemPerwalian2020.DAL
         TranskripViewModel GetNilai(string nim, string role, string state);
         void CreateNilai(IList<DetailTranskrip> det, string periode, string semester, string nim);
         void DeleteMakul(int kode);
-
+        string getWali(string angkatan);
         Mahasiswa GetByNim(string nim);
+
+        
 
         void Insert(Mahasiswa mhs);
         void Update(Mahasiswa mhs);

@@ -12,6 +12,8 @@ namespace SistemPerwalian2020.DAL
         IList<CatatanPerwalian> GetCatatan(int id, string grup);
         void UpdateCatatan(IList<CatatanPerwalian> catatan);
         IList<CatatanPerwalian> GetCatatanbyNim(string nim);
+                IEnumerable<Angkatan> getAngkatan(string nik);
+
         void Insert(Jadwal jdw);
         void Update(Jadwal mhs);
         void Delete(int id);

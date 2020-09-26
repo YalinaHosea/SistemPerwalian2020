@@ -237,5 +237,13 @@ namespace SistemPerwalian2020.DAL
                 }
             }
         }
+
+        public string getWali(string angkatan)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var sql = @"select Wali from Angkatan where Angkatan='" + angkatan + "'";
+                return conn.QueryFirstOrDefault<string>(sql);
+            }        }
     }
 }

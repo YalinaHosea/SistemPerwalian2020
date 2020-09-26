@@ -34,7 +34,7 @@ namespace SistemPerwalian2020.Controllers
         {
             var data = _jdw.GetPresensi(id, grup);
             var jadwal = _jdw.GetJadwalbyId(id);
-            ViewBag.grup = jadwal.Grup;
+            ViewBag.grup = jadwal.Dosen;
             ViewBag.prodi = jadwal.Prodi;
             ViewBag.waktu = jadwal.Waktu;
             return View(data);
@@ -100,20 +100,39 @@ namespace SistemPerwalian2020.Controllers
 
             return lstgrup;
         }
+         public List<SelectListItem> getlistangkatan()
+        {
+            var lstangkatan = new List<SelectListItem>();
+            var nik = HttpContext.Session.GetString("id");
+            var data = _jdw.getAngkatan(nik);
+
+            foreach (var dos in data)
+            {
+                lstangkatan.Add(new SelectListItem
+                {
+                    Value = dos.angkatan,
+                    Text = dos.angkatan
+                });
+            }
+
+            return lstangkatan;
+        }
         public IActionResult Create()
         {
             var lstgrup = getlistgrup();
             ViewBag.grup = lstgrup;
+            var lstangkatan = getlistangkatan();
+            ViewBag.angkatan = lstangkatan;
             return View();
         }
 
         [HttpPost]
         public IActionResult CreatePost(Jadwal jdw)
         {
-            if (HttpContext.Session.GetString("role") == "dosen")
-            {
-                jdw.Grup = HttpContext.Session.GetString("grup");
-            }
+            // if (HttpContext.Session.GetString("role") == "dosen")
+            // {
+            //     jdw.Angkatan = HttpContext.Session.GetString("id");
+            // }
             try
             {
                 _jdw.Insert(jdw);
