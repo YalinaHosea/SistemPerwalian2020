@@ -10,6 +10,7 @@ namespace SistemPerwalian2020.Models
     {
         public int Id_krs { get; set; }
         public string Nim { get; set; }
+        public string Nama {get;set;}
         public string Semester { get; set; }
         public string Periode { get; set; }
 

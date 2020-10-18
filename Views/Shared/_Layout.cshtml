@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     @using Microsoft.AspNetCore.Http
 
@@ -20,23 +21,31 @@
     <link rel="stylesheet" href="~/css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
+    <script src="https://kit.fontawesome.com/4837208c3a.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header class="header_area">
-        <div class="top_menu row m0">
+        <div class="top_menu row m0" style="background-color: #061a23;">
 
-        <div class="container">
+            <div class="container">
+                <div class="float-left center" style="margin-top: 8px;">
+                    <b style="height: 100%; text-align: center; color: white;font-size: small;font-weight: 600;"><i style="margin-right: 5px;" class="fas fa-phone"></i>
+                        0881231312312 <i class="fas fa-envelope" style="margin-left:20px;margin-right: 5px;"></i>
+                        pterpan@ukdw.ac.id</b>
+                </div>
                 <div class="float-right">
 
                     @if (@Context.Session.GetString("user") != null && @Context.Session.GetString("user") != "")
                     {
 
-                    <b style="font-weight:bold" class="dn_btn">Hello @Context.Session.GetString("user") &nbsp;&nbsp;&nbsp; <a href="@Url.Action("Logout","Account")">Log Out</a></b>
+                    <b style="font-weight:bold;color:#49b265;font-size: small;">Hallo, @Context.Session.GetString("user")
+                        &nbsp;&nbsp;&nbsp; <a class="dn_btn" style="font-weight:bold;background-color: #49b265;color:white;width: 80px;text-align: center;" href="@Url.Action("Logout","Account")">Log Out</a></b>
                     }
                     else
                     {
-                        <a style="font-weight:bold" class="dn_btn" href="@Url.Action("Login","Account")">Login</a>
+                    <a style="font-weight:bold;background-color: #49b265;color:white;width: 80px;text-align: center;"
+                        class="dn_btn" href="@Url.Action("Login","Account")">Login</a>
                     }
                 </div>
             </div>
@@ -44,35 +53,43 @@
         <div class="main_menu">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
-                    <a class="navbar-brand logo_h" href="@Url.Action("Index","Home")"><img height="60px" width="40px" src="~/Images/UKDW.jpg" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                    <a class="navbar-brand logo_h" href="@Url.Action(" Index","Home")"><img height="60px" width="50px"
+                            src="~/Images/UKDW.jpg" alt=""></a>
+                    <a href="@Url.Action(" Index","Home")"
+                        style="font-size: large;font-weight: 500;color: #061a23;margin-top: 10px;">PERWALIAN <span style="color: #49b265;font-weight: bolder;">ONLINE</span></a>
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">Home</a></li>
-                            @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") == "superadmin")
-                             {
-                             <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Mahasiswa")">Daftar Mahasiswa</a></li>
-                             }
-                              @if (@Context.Session.GetString("role") == "superadmin")
-                             {
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","MataKuliah")">Daftar Matakuliah</a></li>
-
-                             }
-                              @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") == "superadmin")
-                             {
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("IndexDosen","Krs", new { grup = @Context.Session.GetString("grup")})">Daftar Krs Mahasiswa</a></li>
-
-                             }
-                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Jadwal")">Jadwal Perwalian</a></li>
-                           @if (@Context.Session.GetString("role") == "mahasiswa")
+                            @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") ==
+                            "superadmin")
                             {
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("CatatanMahasiswa", "Jadwal", new { nim = @Context.Session.GetString("id") })">Catatan Perwalian</a></li>
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("Nilai", "Mahasiswa", new { id = @Context.Session.GetString("id") })">Lihat Nilai</a></li>
-                                <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Krs", new { nim = @Context.Session.GetString("id") })">KRS</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Mahasiswa")">Daftar
+                                    Mahasiswa</a></li>
+                            }
+                            @if (@Context.Session.GetString("role") == "superadmin")
+                            {
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","MataKuliah")">Daftar
+                                    Matakuliah</a></li>
+
+                            }
+                            @if (@Context.Session.GetString("role") == "dosen" || @Context.Session.GetString("role") ==
+                            "superadmin")
+                            {
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("IndexDosen","Krs", new {
+                                    id=@Context.Session.GetString("id")})">Daftar Krs Mahasiswa</a></li>
+
+                            }
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Jadwal")">Jadwal
+                                    Perwalian</a></li>
+                            @if (@Context.Session.GetString("role") == "mahasiswa")
+                            {
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("CatatanMahasiswa", "Jadwal" ,
+                                    new { nim=@Context.Session.GetString("id"), nama=@Context.Session.GetString("user")
+                                    })">Catatan Perwalian</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Nilai", "Mahasiswa" , new {
+                                    id=@Context.Session.GetString("id") })">Lihat Nilai</a></li>
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Krs" , new {
+                                    nim=@Context.Session.GetString("id") })">KRS</a></li>
                             }
 
                         </ul>
@@ -85,7 +102,17 @@
 
     @RenderBody()
 
-    <footer class="footer-area p_120"></footer>
+    <footer style="height: 30px;" class="footer-area p_120">
+        <div style="margin-top: -80px;margin-left: 100px;">
+            <b style="color: white;">UNIVERSITAS KRISTEN DUTAN WACANA</b>
+            <p style="color: white;font-size: small;font-weight: 200;">Jl. Dr. Wahidin Sudiro Husodo No. 5 – 25
+                <br>Yogyakarta 55224<br>Telp. 0274 – 563929 Fax. 0274 – 513235<br>Email: humas@staff.ukdw.ac.id </p>
+
+
+        </div>
+        <b style="color: white;font-weight: bold;margin-top: -120px;margin-right: 100px;" class="pull-right">© 2020
+            Universitas Kristen Duta Wacana</b>
+    </footer>
 
     <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/js/popper.js"></script>
@@ -106,5 +133,5 @@
     <script src="~/js/theme.js"></script>
 
 </body>
-</html>
 
+</html>

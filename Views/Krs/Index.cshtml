@@ -1,15 +1,14 @@
-
- @model SistemPerwalian2020.Models.Krs
+@model SistemPerwalian2020.Models.Krs
 @using Microsoft.AspNetCore.Http
 
 @{
     Layout = "_Layout";
 
 }
-<div class="container body-content">
+<div class="container body-content" style="padding-bottom: 100px;">
     <br>
-    <h2>@Model.Nim</h2>
-    <h2>Semester : @Model.Semester - Periode : @Model.Periode</h2>
+    <h2>@Model.Nim @Model.Nama</h2>
+    <h2>Semester : @Model.Semester | Periode : @Model.Periode</h2>
     <br>
     <br>
     @Html.Raw(ViewBag.Pesan)
@@ -38,17 +37,17 @@
                             <td>@data.Jadwal Sesi @data.Sesi - @data.Ruangan</td>
                             <td>@data.Nama</td>
                         </tr>
-
                     }
-                   
+
 
                 </table>
             </div>
-             @if (@Context.Session.GetString("role") == "mahasiswa")
+            @if (@Context.Session.GetString("role") == "mahasiswa")
             {
-            <div class="form-group">
-                @Html.ActionLink("Ubah data KRS", "EditKrs", new { nim = @Model.Nim, periode = @Model.Periode, semester = @Model.Semester }, new { @class = "btn btn-warning btn-sm" })
-             </div>
+                <div class="form-group">
+                    @Html.ActionLink("Ubah data KRS", "EditKrs", new { nim = @Model.Nim, periode = @Model.Periode, semester
+                    = @Model.Semester }, new { @class = "btn btn-warning btn-sm", @style = "color:white" })
+                </div>
             }
         </div>
     </section>

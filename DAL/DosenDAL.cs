@@ -36,7 +36,7 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Dosen where NIK!=1";
+                var strSql = @"select * from Dosen where NIK!='1'";
                 return conn.Query<Dosen>(strSql);
             }
         }

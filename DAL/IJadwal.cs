@@ -9,11 +9,11 @@ namespace SistemPerwalian2020.DAL
         Jadwal GetJadwalbyId(int id);
         IList<PresensiViewModel> GetPresensi(int id, string grup);
         void UpdatePresensi(IList<PresensiViewModel> presensi);
-        IList<CatatanPerwalian> GetCatatan(int id, string grup);
+        IList<CatatanPerwalian> GetCatatan(int id, string angkatan);
         void UpdateCatatan(IList<CatatanPerwalian> catatan);
         IList<CatatanPerwalian> GetCatatanbyNim(string nim);
-                IEnumerable<Angkatan> getAngkatan(string nik);
-
+        IEnumerable<Angkatan> getAngkatan(string nik);
+        IEnumerable<CatatanReport> GetCatatanReport(string nik);
         void Insert(Jadwal jdw);
         void Update(Jadwal mhs);
         void Delete(int id);

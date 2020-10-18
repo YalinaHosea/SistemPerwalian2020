@@ -30,11 +30,11 @@ namespace SistemPerwalian2020.Controllers
         }
 
 
-        public IActionResult Presensi(int id, string grup)
+        public IActionResult Presensi(int id, string angkatan)
         {
-            var data = _jdw.GetPresensi(id, grup);
+            var data = _jdw.GetPresensi(id, angkatan);
             var jadwal = _jdw.GetJadwalbyId(id);
-            ViewBag.grup = jadwal.Dosen;
+            ViewBag.angkatan = jadwal.Angkatan;
             ViewBag.prodi = jadwal.Prodi;
             ViewBag.waktu = jadwal.Waktu;
             return View(data);
@@ -53,15 +53,16 @@ namespace SistemPerwalian2020.Controllers
                 return Content($"error : {x.Message}");
             };
         }
-        public IActionResult CatatanMahasiswa(string nim)
+        public IActionResult CatatanMahasiswa(string nim, string nama)
         {
-            var data = _jdw.GetCatatanbyNim(nim);
+            var data = _jdw.GetCatatanReport(nim);
+            ViewBag.nama = nama;
             return View(data);
         }
 
-        public IActionResult Catatan(int id, string grup)
+        public IActionResult Catatan(int id, string angkatan)
         {
-            var data = _jdw.GetCatatan(id, grup);
+            var data = _jdw.GetCatatan(id, angkatan);
             return View(data);
         }
 
@@ -100,7 +101,7 @@ namespace SistemPerwalian2020.Controllers
 
             return lstgrup;
         }
-         public List<SelectListItem> getlistangkatan()
+        public List<SelectListItem> getlistangkatan()
         {
             var lstangkatan = new List<SelectListItem>();
             var nik = HttpContext.Session.GetString("id");
@@ -150,6 +151,9 @@ namespace SistemPerwalian2020.Controllers
         public IActionResult Edit(int id)
         {
             var data = _jdw.GetJadwalbyId(id);
+
+            var lstangkatan = getlistangkatan();
+            ViewBag.angkatan = lstangkatan;
             return View(data);
         }
 

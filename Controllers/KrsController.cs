@@ -15,7 +15,7 @@ namespace SistemPerwalian2020.Controllers
 
         public KrsController(IKrs krs, IMahasiswa _mhs)
         {
-            _krs = krs;
+            _krs = krs;     
             mhs = _mhs;
             // _dsn = dsn;
         }
@@ -45,13 +45,13 @@ namespace SistemPerwalian2020.Controllers
 
         }
 
-        public IActionResult IndexDosen(string grup)
+        public IActionResult IndexDosen(string id)
         {
             if (TempData["pesan"] != null)
             {
                 ViewBag.pesan = TempData["pesan"].ToString();
             }
-            var data = _krs.GetKrsDosen(grup);
+            var data = _krs.GetKrsDosen(id);
             return View(data);
         }
 
@@ -131,12 +131,12 @@ namespace SistemPerwalian2020.Controllers
             {
                 mhs.CreateNilai(detail, periode, semester, nim);
                 TempData["pesan"] = Helpers.Message.GetPesan("success", "Data nilai berhasil disimpan");
-                return Json(new { result = "Redirect", url = Url.Action("IndexDosen", "Krs") });
+                return Json(new { result = "Redirect", url = Url.Action("IndexDosen", "Krs", new { id="1" }) });
             }
             catch (Exception x)
             {
                 TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
-                return Json(new { result = "Redirect", url = Url.Action("IndexDosen", "Krs") });
+                return Json(new { result = "Redirect", url = Url.Action("IndexDosen", "Krs", new { id="1" }) });
             }
         }
 

@@ -26,7 +26,7 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Mahasiswa order by Nim";
+                var strSql = @"select m.Nim, m.Nama_mhs, m.Status, m.No_hp_mhs, m.Angkatan, d.Nama as Wali from Mahasiswa m inner join Angkatan a on m.Angkatan=a.Angkatan inner join Dosen d on a.Wali=d.Nik order by m.Nim";
                 return conn.Query<Mahasiswa>(strSql);
             }
         }
@@ -107,7 +107,7 @@ namespace SistemPerwalian2020.DAL
                 if (nilai.Count == 0)
                 {
                     return null;
-                }
+                } 
                 data.transkrip = nilai;
 
                 var strSql2 = @"select * from Mahasiswa where NIM=" + nim;
@@ -115,7 +115,7 @@ namespace SistemPerwalian2020.DAL
                 mhs = conn.QueryFirstOrDefault<Mahasiswa>(strSql2);
                 data.mahasiswa = mhs;
 
-                var strSql3 = @"select d.id_makul, d.Kode_detail, g.Kode_matkul, m.Nama_makul, m.SKS, g.Grup, d.Nilai, d.Bobot, d.Kualitas from Detail_Transkrip d inner join Grup_makul g on d.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul";
+                var strSql3 = @"select d.Kode_transkrip, d.id_makul, d.Kode_detail, g.Kode_matkul, m.Nama_makul, m.SKS, g.Grup, d.Nilai, d.Bobot, d.Kualitas from Detail_Transkrip d inner join Grup_makul g on d.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul";
                 var detail = conn.Query<DetailTranskrip>(strSql3);
                 data.detail = detail;
                 return data;

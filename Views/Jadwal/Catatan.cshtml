@@ -3,9 +3,12 @@
     Layout = "_Layout";
 
 }
-<div class="container body-content">
+@{
+    var datenow = DateTime.Now;
+}
+<div class="container body-content" style="padding-bottom: 100px;">
     <br>
-    <h2> Catatan </h2>
+    <h2 style="text-align: center;"> Catatan Perwalian </h2>
     <br>
     <br>
     <form asp-action="UpdateCatatan">
@@ -17,13 +20,17 @@
                     <table class="table table-hover">
                         <tr>
                             <th>Nim</th>
-                            <th>Nama_mhs</th>
+                            <th>Nama Mahasiswa</th>
                             <th>Waktu</th>
                             <th>Catatan</th>
 
                         </tr>
                         @for (int i = 0; i < Model.Count; i++)
                         {
+                            var date = Model[i].Waktu;
+                            DateTime datenull = DateTime.MinValue;
+                            var months = Math.Abs((datenow.Month - date.Month) + 12 * (datenow.Year - date.Year));
+                           
                             <tr>
                                 <td asp-for="@Model[i].Nim" name="Nim">
                                     @Model[i].Nim
@@ -37,25 +44,34 @@
                                 </td>
 
                                 <td asp-for="@Model[i].Waktu" name="Waktu">
-                                    @if (Model[i].Waktu.ToString() == "01/01/0001 00:00:00")
+                                    @if (Model[i].Waktu == datenull)
                                     {
                                         <span>-</span>
                                     }
                                     else
                                     {
-                                        @Model[i].Waktu
+                                        @Html.DisplayFor(x => Model[i].Waktu)
 
                                     }
                                 </td>
                                 <td>
+                                    @if(Model[i].Waktu != datenull && months > 1)
+                                    {
+                                        @Html.DisplayFor(x => Model[i].Catatan)
+
+                                    }
+                                    else {
+
+                                    
                                     <input asp-for="@Model[i].Catatan" type="text" class="form-control" />
+                                }
                                 </td>
 
                             </tr>
                         }
                     </table>
                 </div>
-                <div class="row">
+                <div class="row pull-right">
                     <input type="submit" value="Simpan" class="btn btn-primary" />
                 </div>
             </div>

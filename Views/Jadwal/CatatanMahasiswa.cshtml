@@ -1,14 +1,16 @@
-@model IList<SistemPerwalian2020.Models.CatatanPerwalian>
+@model IList<SistemPerwalian2020.Models.CatatanReport>
+    @using Microsoft.AspNetCore.Http
+
 @{
     Layout = "_Layout";
 
 }
-<div class="container body-content">
+<div class="container body-content" style="padding-bottom: 100px;">
     <br>
-    <h2> Catatan </h2>
-    <hr />
+    <h2 style="text-align: center;"> Catatan Perwalian <span style="color: #49b265;">@ViewBag.nama </span></h2>
+    <br><br>
     <section class="blog_area">
-        <div class="container">
+        <div class="container" style="margin-bottom: 50px;">
             <div class="row">
 
                 <table class="table table-hover">
@@ -24,7 +26,7 @@
                                 @data.Waktu.ToString("dd MMMM yyyy")
                             </td>
                             <td>
-                                @data.Waktu.ToString("yyyy")
+                                @data.Periode
                             </td>
                             <td>
                                 <i>" @data.Catatan "</i>

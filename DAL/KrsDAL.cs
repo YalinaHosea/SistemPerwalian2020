@@ -99,12 +99,12 @@ namespace SistemPerwalian2020.DAL
                 Krs krs = new Krs();
                 if (periode2 == null && semester2 == null)
                 {
-                    var strSql = @"select * from Krs where Nim=" + nim + " and Periode='" + periode + "' and Semester='" + semester + "'";
+                    var strSql = @"select k.Id_Krs, k.Nim, m.Nama_mhs as Nama, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim where k.Nim=" + nim + " and k.Periode='" + periode + "' and k.Semester='" + semester + "'";
                     krs = conn.QuerySingleOrDefault<Krs>(strSql);
                 }
                 else
                 {
-                    var strSql = @"select * from Krs where Nim=" + nim + " and Periode='" + periode2 + "' and Semester='" + semester2 + "'";
+                    var strSql = @"select k.Id_Krs, k.Nim, m.Nama_mhs as Nama, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim where k.Nim=" + nim + " and k.Periode='" + periode2 + "' and k.Semester='" + semester2 + "'";
                     krs = conn.QuerySingleOrDefault<Krs>(strSql);
                 }
 
@@ -114,11 +114,12 @@ namespace SistemPerwalian2020.DAL
                     var param = new { nim = nim, semester = semester, periode = periode };
                     conn.Execute(sql2, param);
 
-                    var sql3 = @"select * from Krs where Nim=" + nim + " and Periode='" + periode + "' and Semester='" + semester + "'";
+                    var sql3 = @"select k.Id_Krs, k.Nim, m.Nama_mhs as Nama, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim where k.Nim=" + nim + " and k.Periode='" + periode + "' and k.Semester='" + semester + "'";
                     krs = conn.QuerySingleOrDefault<Krs>(sql3);
                 }
                 data.Id_krs = krs.Id_krs;
                 data.Nim = krs.Nim;
+                data.Nama = krs.Nama;
                 data.Semester = krs.Semester;
                 data.Periode = krs.Periode;
 
@@ -128,17 +129,21 @@ namespace SistemPerwalian2020.DAL
             }
             return data;
         }
-        public IEnumerable<KrsViewModel> GetKrsDosen(string grup)
+        public IEnumerable<KrsViewModel> GetKrsDosen(string id)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
                 var sql = "";
-                if(grup == null) {
-                 sql = @"select k.Nim, m.Nama_mhs, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim";
+                if(id == "1") {
+                 sql = @"select k.Nim, m.Nama_mhs, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim inner join Angkatan a on m.Angkatan=a.Angkatan order by k.Periode desc";
+
                 }
-                else{
-                 sql = @"select k.Nim, m.Nama_mhs, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim where m.Grup='" + grup + "'";
+                else {
+                 sql = @"select k.Nim, m.Nama_mhs, k.Semester, k.Periode from Krs k inner join Mahasiswa m on k.Nim=m.Nim inner join Angkatan a on m.Angkatan=a.Angkatan where a.Wali='" + id + "'  order by k.Periode desc";
+
                 }
+                
+               
                 return conn.Query<KrsViewModel>(sql);
             }
         }

@@ -63,7 +63,11 @@ namespace SistemPerwalian2020.Controllers
                                         HttpContext.Session.SetString("angkatan", angkatan.ToString());
 
                     var tgl = Int32.Parse(DateTime.Now.Year.ToString());
+                    var month = DateTime.Now.Month;
                     var semester = (tgl - angkatan) * 2;
+                    if(month > 6) {
+                        semester += 1;
+                    }
                     HttpContext.Session.SetString("semester", semester.ToString());
                     var wali = _mhs.getWali(data2.Angkatan);
                     HttpContext.Session.SetString("wali", wali);

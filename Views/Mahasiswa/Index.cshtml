@@ -6,7 +6,7 @@
 
 <div class="container body-content">
     <br>
-    <h2> Daftar Mahasiswa</h2>
+    <h2 style="text-align: center;"> Daftar Mahasiswa</h2>
     <br>
     <br>
     @Html.Raw(ViewBag.Pesan)
@@ -19,15 +19,18 @@
                         <th>NIM</th>
                         <th>Nama</th>
                         <th>Status</th>
-                        <th>Grup</th>
+                                                <th>No.HP</th>
+
                         <th>Angkatan</th>
-                        <th>No.HP</th>
-                        <th>No.HP Orangtua</th>
+                        @if(Context.Session.GetString("role") != "dosen"){
+                        <th>Wali</th>
+                    }
+                        <th></th>
                         <th></th>
                     </tr>
                     @foreach (var data in Model)
                     {
-                        if(data.Grup == Context.Session.GetString("grup") || Context.Session.GetString("grup") == "" || Context.Session.GetString("grup") == null)
+                        if(data.Wali == Context.Session.GetString("user") || Context.Session.GetString("user") == "superadmin")
                         {
                         var src = "/Images/" + data.Nim + ".jpg";
                         <tr>
@@ -35,12 +38,15 @@
                             <td style="vertical-align:middle">@data.Nim</td>
                             <td style="vertical-align:middle">@data.Nama_mhs</td>
                             <td style="vertical-align:middle">@data.Status</td>
-                              <td style="vertical-align:middle">@data.Grup</td>
+                                                        <td style="vertical-align:middle">@data.No_hp_mhs</td>
+
                              <td style="vertical-align:middle">@data.Angkatan</td>
-                            <td style="vertical-align:middle">@data.No_hp_mhs</td>
-                            <td style="vertical-align:middle">@data.No_hp_ortu</td>
-                            <td style="vertical-align:middle"> @Html.ActionLink("Lihat Nilai", "Nilai", new { id = data.Nim }, new { @class = "btn btn-warning btn-round" })</td>
-                            
+                             @if(Context.Session.GetString("role") != "dosen"){
+
+                            <td style="vertical-align:middle">@data.Wali</td>
+                             }
+                            <td style="vertical-align:middle"> @Html.ActionLink("Lihat Nilai", "Nilai", new { id = data.Nim }, new { @class = "btn btn-warning btn-round", @style = "color:white" })</td>
+                            <td style="vertical-align:middle"> @Html.ActionLink("Lihat Catatan", "CatatanMahasiswa", "Jadwal", new { nim = data.Nim, nama = data.Nama_mhs }, new { @class = "btn btn-primary btn-round" })</td>
                         </tr>
                         }
                     }

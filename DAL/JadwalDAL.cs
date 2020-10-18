@@ -55,11 +55,11 @@ namespace SistemPerwalian2020.DAL
                 return conn.QueryFirstOrDefault<Jadwal>(strSql);
             }
         }
-       public IList<PresensiViewModel> GetPresensi(int id, string grup)
+        public IList<PresensiViewModel> GetPresensi(int id, string angkatan)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var str = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Hadir, p.Waktu from Presensi p inner join Mahasiswa m on p.NIM=m.NIM where p.Kode_Jadwal=" + id + " and m.Grup='" + grup + "'";
+                var str = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Hadir, p.Waktu from Presensi p inner join Mahasiswa m on p.NIM=m.NIM where p.Kode_Jadwal=" + id + " and m.Angkatan='" + angkatan + "'";
                 var data = (IList<PresensiViewModel>)conn.Query<PresensiViewModel>(str);
 
                 if (data.Any())
@@ -68,7 +68,7 @@ namespace SistemPerwalian2020.DAL
                 }
                 else
                 {
-                    var str2 = @"select * from Mahasiswa where Grup='" + grup + "' order by NIM";
+                    var str2 = @"select * from Mahasiswa where Angkatan='" + angkatan + "' order by NIM";
                     var datamhs = conn.Query<Mahasiswa>(str2);
                     var tgl = DateTime.Now;
                     foreach (var i in datamhs)
@@ -77,7 +77,7 @@ namespace SistemPerwalian2020.DAL
 
                         try
                         {
-                            var param = new { nim = i.Nim, kode = id, hadir = false, waktu=tgl };
+                            var param = new { nim = i.Nim, kode = id, hadir = false, waktu = tgl };
                             conn.Execute(str3, param);
                         }
                         catch (SqlException x)
@@ -85,7 +85,7 @@ namespace SistemPerwalian2020.DAL
                             throw new Exception($"error : {x.Message}");
                         };
                     }
-                    var strSql = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Hadir, p.Waktu from Presensi p inner join Mahasiswa m on p.NIM=m.NIM where p.Kode_Jadwal=" + id + " and m.Grup='" + grup + "'";
+                    var strSql = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Hadir, p.Waktu from Presensi p inner join Mahasiswa m on p.NIM=m.NIM where p.Kode_Jadwal=" + id + " and m.Angkatan='" + angkatan + "'";
                     return (IList<PresensiViewModel>)conn.Query<PresensiViewModel>(str);
                 }
 
@@ -111,11 +111,11 @@ namespace SistemPerwalian2020.DAL
                 }
             }
         }
-                public IList<CatatanPerwalian> GetCatatan(int id, string grup)
+        public IList<CatatanPerwalian> GetCatatan(int id, string angkatan)
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var str = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Catatan, p.Waktu from Catatan_Perwalian p inner join Mahasiswa m on p.Nim=m.Nim where p.Kode_Jadwal=" + id + " and m.Grup='" + grup + "'";
+                var str = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Catatan, p.Waktu from Catatan_Perwalian p inner join Mahasiswa m on p.Nim=m.Nim where p.Kode_Jadwal=" + id + " and m.Angkatan='" + angkatan + "'";
                 var data = (IList<CatatanPerwalian>)conn.Query<CatatanPerwalian>(str);
 
                 if (data.Any())
@@ -124,7 +124,7 @@ namespace SistemPerwalian2020.DAL
                 }
                 else
                 {
-                    var str2 = @"select * from Mahasiswa where Grup='" + grup + "' order by NIM";
+                    var str2 = @"select * from Mahasiswa where Angkatan='" + angkatan + "' order by NIM";
                     var datamhs = conn.Query<Mahasiswa>(str2);
 
                     foreach (var i in datamhs)
@@ -141,7 +141,7 @@ namespace SistemPerwalian2020.DAL
                             throw new Exception($"error : {x.Message}");
                         };
                     }
-                    var strSql = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Catatan, p.Waktu from Catatan_Perwalian p inner join Mahasiswa m on p.Nim=m.Nim where p.Kode_Jadwal=" + id + " and m.Grup='" + grup + "'";
+                    var strSql = @"select p.NIM, m.Nama_mhs, p.Kode_Jadwal, p.Catatan, p.Waktu from Catatan_Perwalian p inner join Mahasiswa m on p.Nim=m.Nim where p.Kode_Jadwal=" + id + " and m.Angkatan='" + angkatan + "'";
                     return (IList<CatatanPerwalian>)conn.Query<CatatanPerwalian>(str);
                 }
 
@@ -164,7 +164,7 @@ namespace SistemPerwalian2020.DAL
                 var tgl = DateTime.Now;
                 foreach (var data in catatan)
                 {
-                    var strsql = @"update Catatan_Perwalian set Catatan='" + data.Catatan + "', Waktu='"+ tgl.ToString("yyyy-MM-dd HH:mm:ss") + "' where Kode_Jadwal=" + data.Kode_jadwal + " and Nim=" + data.Nim;
+                    var strsql = @"update Catatan_Perwalian set Catatan='" + data.Catatan + "', Waktu='" + tgl.ToString("yyyy-MM-dd HH:mm:ss") + "' where Kode_Jadwal=" + data.Kode_jadwal + " and Nim=" + data.Nim;
                     try
                     {
                         conn.Execute(strsql);
@@ -200,8 +200,8 @@ namespace SistemPerwalian2020.DAL
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
 
-                var strsql = @"update Jadwal_Perwalian set Periode=@periode, Prodi=@prodi, Dosen=@dosen, Waktu=@waktu where Kode_jadwal=" + mhs.Kode_jadwal;
-                var param = new { periode = mhs.Periode, prodi = mhs.Prodi, dosen = mhs.Dosen, waktu = mhs.Waktu };
+                var strsql = @"update Jadwal_Perwalian set Periode=@periode, Prodi=@prodi, Angkatan=@angkatan, Waktu=@waktu where Kode_jadwal=" + mhs.Kode_jadwal;
+                var param = new { periode = mhs.Periode, prodi = mhs.Prodi, angkatan = mhs.Angkatan, waktu = mhs.Waktu };
                 try
                 {
                     conn.Execute(strsql, param);
@@ -227,15 +227,26 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                if(nik != null) {
-var strSql = @"select * from Angkatan where Wali='" + nik + "'";
-                return conn.Query<Angkatan>(strSql);
+                if (nik != "1")
+                {
+                    var strSql = @"select * from Angkatan where Wali='" + nik + "'";
+                    return conn.Query<Angkatan>(strSql);
                 }
-                else{
-var strSql = @"select * from Angkatan";
-                return conn.Query<Angkatan>(strSql);
+                else
+                {
+                    var strSql = @"select * from Angkatan";
+                    return conn.Query<Angkatan>(strSql);
                 }
-                
+
+            }
+        }
+
+        public IEnumerable<CatatanReport> GetCatatanReport(string nim)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"select j.Waktu, j.Periode, c.Catatan from Jadwal_Perwalian j inner join Catatan_Perwalian c on j.Kode_jadwal=c.Kode_Jadwal where c.Nim='" + nim + "'";
+                return conn.Query<CatatanReport>(strSql);
             }
         }
     }

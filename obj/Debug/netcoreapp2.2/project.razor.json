@@ -1,5 +1,5 @@
 {
-  "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\SistemPerwalian2020.csproj",
+  "FilePath": "d:\\perwalian\\SistemPerwalian2020\\SistemPerwalian2020.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -1872,118 +1872,118 @@
   "RootNamespace": "SistemPerwalian2020",
   "Documents": [
     {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Krs\\IndexDosen.cshtml",
-      "TargetPath": "Views\\Krs\\IndexDosen.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\MataKuliah\\Create.cshtml",
-      "TargetPath": "Views\\MataKuliah\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Mahasiswa\\Nilai.cshtml",
-      "TargetPath": "Views\\Mahasiswa\\Nilai.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Jadwal\\CatatanMahasiswa.cshtml",
-      "TargetPath": "Views\\Jadwal\\CatatanMahasiswa.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Account\\Login.cshtml",
-      "TargetPath": "Views\\Account\\Login.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Mahasiswa\\Index.cshtml",
-      "TargetPath": "Views\\Mahasiswa\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Jadwal\\Catatan.cshtml",
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Jadwal\\Catatan.cshtml",
       "TargetPath": "Views\\Jadwal\\Catatan.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Home\\About.cshtml",
-      "TargetPath": "Views\\Home\\About.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\MataKuliah\\Edit.cshtml",
-      "TargetPath": "Views\\MataKuliah\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Krs\\CreateNilai.cshtml",
-      "TargetPath": "Views\\Krs\\CreateNilai.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Jadwal\\Create.cshtml",
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Jadwal\\Create.cshtml",
       "TargetPath": "Views\\Jadwal\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Krs\\Index.cshtml",
-      "TargetPath": "Views\\Krs\\Index.cshtml",
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Jadwal\\CatatanMahasiswa.cshtml",
+      "TargetPath": "Views\\Jadwal\\CatatanMahasiswa.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Krs\\EditKrs.cshtml",
-      "TargetPath": "Views\\Krs\\EditKrs.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Dosen\\Index.cshtml",
-      "TargetPath": "Views\\Dosen\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\MataKuliah\\Index.cshtml",
-      "TargetPath": "Views\\MataKuliah\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Jadwal\\Presensi.cshtml",
-      "TargetPath": "Views\\Jadwal\\Presensi.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Mahasiswa\\IndexMakul.cshtml",
-      "TargetPath": "Views\\Mahasiswa\\IndexMakul.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Krs\\IndexMakul.cshtml",
-      "TargetPath": "Views\\Krs\\IndexMakul.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Jadwal\\Index.cshtml",
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Jadwal\\Index.cshtml",
       "TargetPath": "Views\\Jadwal\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Shared\\_Layout.cshtml",
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Krs\\IndexMakul.cshtml",
+      "TargetPath": "Views\\Krs\\IndexMakul.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\MataKuliah\\Index.cshtml",
+      "TargetPath": "Views\\MataKuliah\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Krs\\Index.cshtml",
+      "TargetPath": "Views\\Krs\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Mahasiswa\\Nilai.cshtml",
+      "TargetPath": "Views\\Mahasiswa\\Nilai.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Account\\Login.cshtml",
+      "TargetPath": "Views\\Account\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\MataKuliah\\Create.cshtml",
+      "TargetPath": "Views\\MataKuliah\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Mahasiswa\\IndexMakul.cshtml",
+      "TargetPath": "Views\\Mahasiswa\\IndexMakul.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Krs\\CreateNilai.cshtml",
+      "TargetPath": "Views\\Krs\\CreateNilai.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\MataKuliah\\Edit.cshtml",
+      "TargetPath": "Views\\MataKuliah\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Home\\About.cshtml",
+      "TargetPath": "Views\\Home\\About.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Krs\\EditKrs.cshtml",
+      "TargetPath": "Views\\Krs\\EditKrs.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Mahasiswa\\Index.cshtml",
+      "TargetPath": "Views\\Mahasiswa\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Jadwal\\Edit.cshtml",
+      "TargetPath": "Views\\Jadwal\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Krs\\IndexDosen.cshtml",
+      "TargetPath": "Views\\Krs\\IndexDosen.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\SistemPerwalian\\perwalian 2\\SistemPerwalian2020\\Views\\Jadwal\\Edit.cshtml",
-      "TargetPath": "Views\\Jadwal\\Edit.cshtml",
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Jadwal\\Presensi.cshtml",
+      "TargetPath": "Views\\Jadwal\\Presensi.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\perwalian\\SistemPerwalian2020\\Views\\Dosen\\Index.cshtml",
+      "TargetPath": "Views\\Dosen\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

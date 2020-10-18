@@ -1,67 +1,81 @@
 @model SistemPerwalian2020.Models.TranskripViewModel
 
-    @{
-        Layout = "_Layout";
+@{
+    Layout = "_Layout";
 
-    }
+}
 
-    @if(Model == null) {
-<section class="blog_area">
+@if (Model == null)
+{
+    <section class="blog_area">
         <div class="container" style="margin-bottom:50px">
             <div class="row" style="margin-top: 200px;margin-bottom: 200px;justify-content: center;">
                 <h3>Belum ada nilai</h3>
             </div>
 
-                </div>
-                </section>
-    }
-    else{
-
-  
- 
-    var src = "/Images/" + Model.mahasiswa.Nim + ".jpg";
-
-<div class="container body-content">
-    <br>
-    <div style="text-align:center">
-        <h2>TRANSKRIP NILAI</h2>
-    </div>
-    <hr />
-    <div style="display:flex;align-items:center">
-        <img src="@src" class="rounded-circle" style="height:100px;width:100px" />
-        <div style="margin-left:20px">
-            <h2>@Model.mahasiswa.Nama_mhs / @Model.mahasiswa.Nim</h2>
-            <p style="margin-bottom:0">Tahun Akademik 2017/2018 Semester Genap</p>
-        </div>
-    </div>
-    <br />
-    <section class="blog_area">
-        <div class="container" style="margin-bottom:50px">
-            <div class="row">
-                <table class="table table-hover">
-                    <tr>
-                        <th>Kode Makul</th>
-                        <th>Nama Makul</th>
-                        <th>SKS</th>
-                        <th>Nilai</th>
-                        <th>Bobot</th>
-                        <th>Kualitas</th>
-
-                    </tr>
-                    @foreach (var data in Model.detail)
-                    {
-                        <tr>
-                            <td>@data.Kode_matkul</td>
-                            <td>@data.Nama_makul</td>
-                            <td>@data.SKS</td>
-                            <td>@data.Nilai</td>
-                            <td>@data.Bobot</td>
-                            <td>@data.Kualitas</td>
-                        </tr>
-                    }
-                </table>
-            </div>
         </div>
     </section>
-</div>
-  }
+}
+else
+{
+
+
+
+    var src = "/Images/" + Model.mahasiswa.Nim + ".jpg";
+
+    <div class="container body-content">
+        <br>
+        <div style="text-align:center">
+            <h2>TRANSKRIP NILAI</h2>
+        </div>
+        <hr />
+        <div style="display:flex;align-items:center">
+            <img src="@src" class="rounded-circle" style="height:100px;width:100px" />
+            <div style="margin-left:20px">
+                <h2>@Model.mahasiswa.Nama_mhs / <span style="color: #49b265;">@Model.mahasiswa.Nim</span></h2>
+            </div>
+        </div>
+        <br />
+        <section class="blog_area">
+            <div class="container" style="margin-bottom:50px">
+                @foreach (var datatranskrip in Model.transkrip)
+                {
+                    <div class="row">
+                        <h3>Periode <span style="color: #49b265;">@datatranskrip.Periode</span> Semester <span
+                            style="color: #49b265;">@datatranskrip.Semester</span></h3>
+                    </div>
+                    <div class="row" style="margin-bottom: 50px;">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Kode Makul</th>
+                                <th>Nama Makul</th>
+                                <th>Grup</th>
+                                <th>SKS</th>
+                                <th>Nilai</th>
+                                <th>Bobot</th>
+                                <th>Kualitas</th>
+
+                            </tr>
+                            @foreach (var data in Model.detail)
+                            {
+                                if (data.Kode_transkrip == datatranskrip.Kode_Transkrip)
+                                {
+                                    <tr>
+                                        <td>@data.Kode_matkul</td>
+                                        <td>@data.Nama_makul</td>
+                                        <td>@data.Grup</td>
+                                        <td>@data.SKS</td>
+                                        <td>@data.Nilai</td>
+                                        <td>@data.Bobot</td>
+                                        <td>@data.Kualitas</td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                }
+
+            </div>
+        </section>
+    </div>
+}

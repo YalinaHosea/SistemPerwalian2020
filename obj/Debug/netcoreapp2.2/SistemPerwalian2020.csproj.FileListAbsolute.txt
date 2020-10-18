@@ -131,3 +131,138 @@ D:\SistemPerwalian\perwalian 2\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor
 D:\perwalian 2\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\IndexDosen.g.cshtml.cs
 D:\perwalian 2\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\CreateNilai.g.cshtml.cs
 D:\SistemPerwalian\perwalian 2\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\CreateNilai.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.deps.json
+D:\perwalian\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.runtimeconfig.json
+D:\perwalian\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.runtimeconfig.dev.json
+D:\perwalian\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.dll
+D:\perwalian\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.pdb
+D:\perwalian\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.Views.dll
+D:\perwalian\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.Views.pdb
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csprojAssemblyReference.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csproj.CoreCompileInputs.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorAssemblyInfo.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorAssemblyInfo.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.AssemblyInfoInputs.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.AssemblyInfo.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.TagHelpers.input.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.TagHelpers.output.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorCoreGenerate.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Dosen\Index.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Catatan.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\CatatanMahasiswa.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Create.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Edit.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Index.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Presensi.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\CreateNilai.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\EditKrs.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\Index.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\IndexDosen.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\IndexMakul.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Index.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\IndexMakul.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Nilai.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Create.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Edit.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Index.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorTargetAssemblyInfo.cache
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorTargetAssemblyInfo.cs
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.Views.pdb
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.dll
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.pdb
+D:\perwalian\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csproj.CopyComplete
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.deps.json
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.runtimeconfig.json
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.runtimeconfig.dev.json
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.dll
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.pdb
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.Views.dll
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.Views.pdb
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csprojAssemblyReference.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csproj.CoreCompileInputs.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorAssemblyInfo.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorAssemblyInfo.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.AssemblyInfoInputs.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.AssemblyInfo.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.TagHelpers.input.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.TagHelpers.output.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorCoreGenerate.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Dosen\Index.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Catatan.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\CatatanMahasiswa.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Create.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Edit.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Index.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Presensi.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\CreateNilai.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\EditKrs.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\Index.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\IndexDosen.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\IndexMakul.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Index.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\IndexMakul.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Nilai.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Create.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Edit.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Index.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorTargetAssemblyInfo.cache
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorTargetAssemblyInfo.cs
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.Views.pdb
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.dll
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.pdb
+D:\sistem new\SistemPerwalian2020\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csproj.CopyComplete
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.deps.json
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.runtimeconfig.json
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.runtimeconfig.dev.json
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.dll
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.pdb
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.Views.dll
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\bin\Debug\netcoreapp2.2\SistemPerwalian2020.Views.pdb
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csprojAssemblyReference.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csproj.CoreCompileInputs.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorAssemblyInfo.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorAssemblyInfo.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.AssemblyInfoInputs.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.AssemblyInfo.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.TagHelpers.input.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.TagHelpers.output.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorCoreGenerate.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Account\Login.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Dosen\Index.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Home\About.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Catatan.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\CatatanMahasiswa.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Create.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Edit.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Index.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Presensi.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\CreateNilai.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\EditKrs.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\Index.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\IndexDosen.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Krs\IndexMakul.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Index.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\IndexMakul.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Nilai.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Create.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Edit.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\MataKuliah\Index.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorTargetAssemblyInfo.cache
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.RazorTargetAssemblyInfo.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.Views.pdb
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.dll
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.pdb
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csproj.CopyComplete

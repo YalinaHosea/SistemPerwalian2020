@@ -3,10 +3,10 @@
     Layout = "_Layout";
 
 }
-<div class="container body-content">
+<div class="container body-content" style="padding-bottom: 50px;">
     <br>
-    <h2> Presensi Perwalian Prodi @ViewBag.prodi Grup @ViewBag.grup </h2>
-    <p><h3>@ViewBag.waktu.ToString("dd MMMM yyyy")</h3></p>
+    <h2> Presensi Perwalian Prodi <span style="color: #49b265;"> @ViewBag.prodi</span> Angkatan<span style="color: #49b265;"> @ViewBag.angkatan</span> </h2>
+   <h3 style="color: #49b265;">@ViewBag.waktu.ToString("dd MMMM yyyy")</h3>
     <br>
     <br>
     <form asp-action="UpdatePresensi">
@@ -55,7 +55,7 @@
                         }
                     </table>
                 </div>
-                <div class="row">
+                <div class="row pull-right" style="margin-right: 50px;">
                     <input type="submit" value="Simpan" class="btn btn-primary" />
                 </div>
             </div>
