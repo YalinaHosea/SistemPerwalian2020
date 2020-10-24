@@ -6,6 +6,7 @@ namespace SistemPerwalian2020.DAL
     public interface IJadwal
     {
         IEnumerable<Jadwal> GetJadwals();
+        IEnumerable<JadwalViewModelReport> GetReports(int id);
         Jadwal GetJadwalbyId(int id);
         IList<PresensiViewModel> GetPresensi(int id, string grup);
         void UpdatePresensi(IList<PresensiViewModel> presensi);

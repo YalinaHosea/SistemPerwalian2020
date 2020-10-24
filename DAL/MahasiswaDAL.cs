@@ -56,15 +56,68 @@ namespace SistemPerwalian2020.DAL
             }
         }
 
-        public void Insert(Mahasiswa mhs)
+        public MahasiswaViewModel GetByNimVM(string nim)
         {
-            throw new System.NotImplementedException();
+            MahasiswaViewModel mhs = new MahasiswaViewModel();
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"select * from Mahasiswa where NIM=@Id";
+                var param = new { Id = nim };
+                mhs.OldNim = nim;
+                mhs.mhs =  conn.QuerySingleOrDefault<Mahasiswa>(strSql, param);
+                return mhs;
+            }
         }
 
-        public void Update(Mahasiswa mhs)
+        public void Insert(Mahasiswa mhs)
         {
-            throw new System.NotImplementedException();
-        }
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var sql = @"insert into Mahasiswa (Nim,Nama_mhs,Status,No_hp_mhs,No_hp_ortu,Password,Angkatan) values(@nim, @nama,@status,@nohp,@nohportu,@nim,@angkatan)";
+                var param = new { nim = mhs.Nim, nama = mhs.Nama_mhs, status = mhs.Status, nohp = mhs.No_hp_mhs, nohportu = mhs.No_hp_ortu, angkatan = mhs.Angkatan };
+
+                try
+                {
+                    conn.Execute(sql, param);
+                }
+                catch (SqlException x)
+                {
+                    throw new Exception($"error : {x.Message}");
+                }
+            }      
+         }
+
+        public void Update(MahasiswaViewModel mhs)
+        {
+             using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strsql = @"update Mahasiswa set Nim=@nim, Nama_mhs=@nama, No_hp_mhs=@nohp, No_hp_ortu=@nohportu, Angkatan=@angkatan where Nim='" + mhs.OldNim + "'";
+                var param = new { nim = mhs.mhs.Nim, nama = mhs.mhs.Nama_mhs, nohp = mhs.mhs.No_hp_mhs, nohportu = mhs.mhs.No_hp_ortu, angkatan = mhs.mhs.Angkatan };
+                try
+                {
+                    conn.Execute(strsql, param);
+                }
+                catch (SqlException x)
+                {
+                    throw new Exception($"error : {x.Message}");
+                };       
+            }
+         }
+
+         public void Delete(string nim) {
+              using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var sql = @"delete from Mahasiswa where Nim='" + nim + "'";
+                try
+                {
+                    conn.Execute(sql);
+                }
+                catch (SqlException x)
+                {
+                    throw new Exception($"error : {x.Message}");
+                }
+            }
+         }
 
         public Mahasiswa Login(string Id, string Password)
         {

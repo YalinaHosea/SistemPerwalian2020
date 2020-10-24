@@ -15,10 +15,9 @@ namespace SistemPerwalian2020.DAL
         void DeleteMakul(int kode);
         string getWali(string angkatan);
         Mahasiswa GetByNim(string nim);
-
-        
-
         void Insert(Mahasiswa mhs);
-        void Update(Mahasiswa mhs);
+        void Update(MahasiswaViewModel mhs);
+        void Delete(string nik);
+        MahasiswaViewModel GetByNimVM(string nim);
     }
 }

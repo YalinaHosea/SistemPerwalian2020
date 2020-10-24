@@ -266,3 +266,6 @@ D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Si
 D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.dll
 D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.pdb
 D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\SistemPerwalian2020.csproj.CopyComplete
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Create.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Mahasiswa\Edit.g.cshtml.cs
+D:\Program S1\Semester 7\Peterpan\SistemPerwalian2020\obj\Debug\netcoreapp2.2\Razor\Views\Jadwal\Report.g.cshtml.cs

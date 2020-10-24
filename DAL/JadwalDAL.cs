@@ -249,5 +249,14 @@ namespace SistemPerwalian2020.DAL
                 return conn.Query<CatatanReport>(strSql);
             }
         }
+
+        public IEnumerable<JadwalViewModelReport> GetReports(int id)
+        {
+             using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var strSql = @"select m.Nim, m.Nama_mhs, p.Hadir,c.Catatan from Mahasiswa m inner join Presensi p on m.Nim=p.Nim inner join Catatan_Perwalian c on m.Nim=c.Nim where p.Kode_jadwal=" + id;
+                return conn.Query<JadwalViewModelReport>(strSql);
+            }
+        }
     }
 }

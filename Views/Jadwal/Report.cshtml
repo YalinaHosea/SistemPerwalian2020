@@ -1,0 +1,44 @@
+@model IEnumerable<SistemPerwalian2020.Models.JadwalViewModelReport>
+
+@{
+    Layout = "_Layout";
+
+}
+@using Microsoft.AspNetCore.Http
+
+<div class="container body-content">
+    <br>
+ <h2 style="text-align: center;"> Laporan Perwalian Prodi <span style="color: #49b265;"> @ViewBag.prodi</span> Angkatan<span style="color: #49b265;"> @ViewBag.angkatan</span> </h2>
+   <h3 style="color: #49b265;text-align: center;">@ViewBag.waktu.ToString("dd MMMM yyyy")</h3>    <br>
+    <br>
+    @Html.Raw(ViewBag.Pesan)
+    <section class="blog_area">
+        <div class="container" style="margin-bottom:50px">
+                       
+            <div class="row">
+                <table class="table table-hover">
+                    <tr>
+                        <th>NIM</th>
+                        <th>Nama</th>
+                        <th>Kehadiran</th>
+                        <th>Catatan</th>
+                    </tr>
+                    @foreach (var data in Model)
+                    {
+                       
+                        <tr>
+                            <td style="vertical-align:middle">@data.Nim</td>
+                            <td style="vertical-align:middle">@data.Nama_mhs</td>
+                            <td>
+                                <input onclick="return false;" asp-for="@data.Hadir" type="checkbox" />
+                            </td>
+                            <td style="vertical-align:middle">@data.Catatan</td>
+
+                             </tr>
+                        
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
+</div>  

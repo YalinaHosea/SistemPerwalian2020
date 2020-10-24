@@ -48,8 +48,9 @@
                                 }
                                 @if (@Context.Session.GetString("role") == "dosen")
                                 {
-                               @Html.ActionLink("Presensi", "Presensi", new { id = item.Kode_jadwal, angkatan = item.Angkatan }, new { @class = "btn btn-primary btn-sm", @style = "margin-right:10px" })
-                                    @Html.ActionLink("Catatan", "Catatan", new { id = item.Kode_jadwal, angkatan = item.Angkatan }, new { @class = "btn btn-success btn-sm" })
+                                @Html.ActionLink("Presensi", "Presensi", new { id = item.Kode_jadwal, angkatan = item.Angkatan }, new { @class = "btn btn-primary btn-sm", @style = "margin-right:10px" })
+                                @Html.ActionLink("Catatan", "Catatan", new { id = item.Kode_jadwal, angkatan = item.Angkatan }, new { @class = "btn btn-success btn-sm" , @style = "margin-right:10px" })
+                                @Html.ActionLink("Report", "Report", new { id = item.Kode_jadwal }, new { @class = "btn btn-primary btn-sm" })
                                 }
                                 </div>
                             </div>

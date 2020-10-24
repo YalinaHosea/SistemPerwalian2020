@@ -1,0 +1,59 @@
+@model SistemPerwalian2020.Models.Mahasiswa
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content" style="padding-bottom: 50px;">
+    <br>
+    <h2 style="text-align: center;">Tambah Mahasiswa</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Nim" class="control-label">NIM</label>
+                        <input asp-for="Nim" class="form-control" />
+                        <span asp-validation-for="Nim" class="text-danger"></span>
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Nama_mhs" class="control-label">Nama Mahasiswa</label>
+                    <input asp-for="Nama_mhs" class="form-control" />
+                    <span asp-validation-for="Nama_mhs" class="text-danger"></span>
+
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+        <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="No_hp_mhs" class="control-label">No. Handphone Mahasiswa</label>
+                        <input asp-for="No_hp_mhs" class="form-control" />
+                        <span asp-validation-for="No_hp_mhs" class="text-danger"></span>
+                    </div>
+                </div>
+                 <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="No_hp_ortu" class="control-label">No. Handphone Orangtua</label>
+                        <input asp-for="No_hp_ortu" class="form-control" />
+                        <span asp-validation-for="No_hp_ortu" class="text-danger"></span>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group center" style="align-self: center;">
+                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>

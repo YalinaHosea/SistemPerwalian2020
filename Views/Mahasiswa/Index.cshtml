@@ -12,6 +12,11 @@
     @Html.Raw(ViewBag.Pesan)
     <section class="blog_area">
         <div class="container" style="margin-bottom:50px">
+                        @if(Context.Session.GetString("role") == "superadmin"){
+             <p>
+                    <a href="@Url.Action("Create", "Mahasiswa")" class="btn btn-success">Tambah Mahasiswa</a>
+                </p>
+                        }
             <div class="row">
                 <table class="table table-hover">
                     <tr>
@@ -24,6 +29,9 @@
                         <th>Angkatan</th>
                         @if(Context.Session.GetString("role") != "dosen"){
                         <th>Wali</th>
+                    }
+                    @if(Context.Session.GetString("role") == "superadmin"){
+                        <th></th>
                     }
                         <th></th>
                         <th></th>
@@ -45,6 +53,11 @@
 
                             <td style="vertical-align:middle">@data.Wali</td>
                              }
+                             @if(Context.Session.GetString("role") == "superadmin"){
+                            <td style="vertical-align:middle"> @Html.ActionLink("Edit", "Edit", new { nim = data.Nim }, new { @class = "btn btn-warning btn-round", @style = "color:white" })</td>
+                                            <td style="vertical-align:middle">               @Html.ActionLink("Delete", "Delete", new { nim = data.Nim }, new { @class = "btn btn-danger btn-round", @style = "color:white"  })</td>
+
+                    }
                             <td style="vertical-align:middle"> @Html.ActionLink("Lihat Nilai", "Nilai", new { id = data.Nim }, new { @class = "btn btn-warning btn-round", @style = "color:white" })</td>
                             <td style="vertical-align:middle"> @Html.ActionLink("Lihat Catatan", "CatatanMahasiswa", "Jadwal", new { nim = data.Nim, nama = data.Nama_mhs }, new { @class = "btn btn-primary btn-round" })</td>
                         </tr>

@@ -26,7 +26,7 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Dosen where NIK=@Id and Password=@Password";
+                var strSql = @"select * from Dosen where Username=@Id and Password=@Password";
                 var param = new { Id = id, Password = password };
                 return conn.QuerySingleOrDefault<Dosen>(strSql, param);
             }

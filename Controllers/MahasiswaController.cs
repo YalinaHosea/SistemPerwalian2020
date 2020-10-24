@@ -148,6 +148,88 @@ namespace SistemPerwalian2020.Controllers
             }
             return lstyear;
         }
+         public List<SelectListItem> getliststatus()
+        {
+            var lststatus = new List<SelectListItem>();
+
+            lststatus.Add(new SelectListItem
+            {
+                Value = "Ya",
+                Text = "Ya"
+            });
+             lststatus.Add(new SelectListItem
+            {
+                Value = "Tidak",
+                Text = "Tidak"
+            });
+            return lststatus;
+        }
+
+        public IActionResult Create() {
+            // var lststatus = getliststatus();
+            // ViewBag.status = lststatus;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Mahasiswa mhs) {
+            var nim_sub = mhs.Nim;
+            var angakatan_sub = nim_sub.Substring(2, 2);
+            var angkatan = "20" + angakatan_sub;
+            mhs.Angkatan = angkatan;
+            mhs.Status = "Aktif";
+            try
+            {
+                _mhs.Insert(mhs);
+                TempData["pesan"] = Helpers.Message.GetPesan("success", "Data mahasiswa berhasil disimpan");
+                return RedirectToAction("Index");
+            }
+            catch(Exception x) {
+                TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
+                return RedirectToAction("Index");
+            }
+        }
+
+        public IActionResult Edit(string nim) {
+            var data = _mhs.GetByNimVM(nim);
+            return View(data);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(MahasiswaViewModel data) {
+            var nim_sub = data.mhs.Nim;
+            var angakatan_sub = nim_sub.Substring(2, 2);
+            var angkatan = "20" + angakatan_sub;
+            data.mhs.Angkatan = angkatan;
+            try
+            {
+                _mhs.Update(data);
+                TempData["pesan"] = Helpers.Message.GetPesan("success", "Data mahasiswa berhasil diubah");
+                return RedirectToAction("Index");
+            }
+            catch(Exception x) {
+                TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
+                return RedirectToAction("Index");
+            }
+        }
+
+        public IActionResult Delete(string nim)
+        {
+            try
+            {
+                _mhs.Delete(nim);
+                TempData["pesan"] = Helpers.Message.GetPesan("success", "sukses menghapus data mahasiswa");
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception x)
+            {
+                TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
+                return RedirectToAction("Index");
+
+            }
+        }
+
 
         public IActionResult CreateNilai(string id)
         {

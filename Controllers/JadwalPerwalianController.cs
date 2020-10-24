@@ -59,10 +59,23 @@ namespace SistemPerwalian2020.Controllers
             ViewBag.nama = nama;
             return View(data);
         }
+         public IActionResult Report(int id)
+        {
+            var data = _jdw.GetReports(id);
+            var jadwal = _jdw.GetJadwalbyId(id);
+            ViewBag.angkatan = jadwal.Angkatan;
+            ViewBag.prodi = jadwal.Prodi;
+            ViewBag.waktu = jadwal.Waktu;
+            return View(data);
+        }
 
         public IActionResult Catatan(int id, string angkatan)
         {
             var data = _jdw.GetCatatan(id, angkatan);
+            var jadwal = _jdw.GetJadwalbyId(id);
+            ViewBag.angkatan = jadwal.Angkatan;
+            ViewBag.prodi = jadwal.Prodi;
+            ViewBag.waktu = jadwal.Waktu;
             return View(data);
         }
 
