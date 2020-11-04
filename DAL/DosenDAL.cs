@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using SistemPerwalian2020.Models;
 using Dapper;
+using System;
 
 namespace SistemPerwalian2020.DAL
 {
@@ -21,14 +22,12 @@ namespace SistemPerwalian2020.DAL
             return _config.GetConnectionString("DefaultConnection");
         }
 
-
-        public Dosen Login(string id, string password)
-        {
+        public Dosen Login(string Id, string Password){
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Dosen where Username=@Id and Password=@Password";
-                var param = new { Id = id, Password = password };
-                return conn.QuerySingleOrDefault<Dosen>(strSql, param);
+                var strSql = @"select *from Dosen where Username=@Id and Password=@Password";
+                var param = new {Id=Id, Password=Password};
+                return conn.QueryFirstOrDefault<Dosen>(strSql, param);
             }
         }
 
@@ -40,5 +39,23 @@ namespace SistemPerwalian2020.DAL
                 return conn.Query<Dosen>(strSql);
             }
         }
+
+         public void AddDosen(Dosen dosen)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                var sql = @"insert into Dosen (Nik,Nama,Password,Username) values(@Nik, @Nama, @Username, @Username)";
+                var param = new { Nik = dosen.Nik, Nama = dosen.Nama, Username = dosen.Username};
+
+                try
+                {
+                    conn.Execute(sql, param);
+                }
+                catch (SqlException x)
+                {
+                    throw new Exception($"error : {x.Message}");
+                }
+            }      
+         }
     }
 }

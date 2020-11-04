@@ -8,6 +8,8 @@ namespace SistemPerwalian2020.DAL
         //IEnumerable<Dosen> Login(string Id, string Password);
         Dosen Login(string id, string password);
         IEnumerable<Dosen> GetDosen();
+
+        void AddDosen (Dosen dosen);
     }
 
 }

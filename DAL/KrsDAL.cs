@@ -49,7 +49,7 @@ namespace SistemPerwalian2020.DAL
                 {
                     var sql1 = @"select g.id, g.Kode_matkul, m.Nama_makul, m.SKS, m.Harga, g.Grup, d.Nilai" +
                                     " from Detail_KRS de inner join Grup_makul g on de.id_makul=g.id inner join Mata_Kuliah m on g.Kode_matkul=m.Kode_matkul " +
-                                     "inner join Detail_Transkrip d on g.id=d.id_makul where de.Id_krs=" + krs.Id_krs;
+                                     "inner join Detail_Transkrip d on g.id=d.id_makul where de.Id_krs=" + krs.Id_krs + " and d.Kode_Transkrip=" + i;
                     var det = conn.Query<DetailKrs_ViewModel>(sql1);
                     data.detail = det;
 

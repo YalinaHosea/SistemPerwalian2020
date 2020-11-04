@@ -27,10 +27,11 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var sql = @"delete from Jadwal_perwalian where Kode_jadwal=" + id;
+                var sql = @"delete from Jadwal_perwalian where Kode_jadwal=@id";
+                var param = new { id=id};
                 try
                 {
-                    conn.Execute(sql);
+                    conn.Execute(sql, param);
                 }
                 catch (SqlException x)
                 {
@@ -51,8 +52,9 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Jadwal_Perwalian where Kode_Jadwal=" + id;
-                return conn.QueryFirstOrDefault<Jadwal>(strSql);
+                var strSql = @"select * from Jadwal_Perwalian where Kode_Jadwal=@id";
+                var param = new {id=id};
+                return conn.QueryFirstOrDefault<Jadwal>(strSql, param);
             }
         }
         public IList<PresensiViewModel> GetPresensi(int id, string angkatan)
