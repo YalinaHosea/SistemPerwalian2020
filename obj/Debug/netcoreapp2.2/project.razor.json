@@ -1892,6 +1892,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Program S1\\Semester 7\\Peterpan\\SistemPerwalian2020\\Views\\Dosen\\Create.cshtml",
+      "TargetPath": "Views\\Dosen\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Program S1\\Semester 7\\Peterpan\\SistemPerwalian2020\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
       "FileKind": "mvc"

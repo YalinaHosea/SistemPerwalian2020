@@ -31,6 +31,7 @@ namespace SistemPerwalian2020.DAL
             }
         }
 
+
         public IEnumerable<Dosen> GetDosen()
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))

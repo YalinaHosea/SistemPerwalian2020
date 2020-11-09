@@ -1,0 +1,52 @@
+@model SistemPerwalian2020.Models.Dosen
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content" style="padding-bottom: 50px;">
+    <br>
+    <h2 style="text-align: center;">Tambah Dosen</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Nik" class="control-label">Nik</label>
+                        <input asp-for="Nik" class="form-control" />
+                        <span asp-validation-for="Nik" class="text-danger"></span>
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Nama" class="control-label">Nama Dosen</label>
+                    <input asp-for="Nama" class="form-control" />
+                    <span asp-validation-for="Nama" class="text-danger"></span>
+
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+        <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label">Username</label>
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
+                </div>
+                <div class="form-group center" style="align-self: center;">
+                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>

@@ -2,6 +2,7 @@
     Layout = "_Layout";
 
 }
+@using Microsoft.AspNetCore.Http
 <div class="container body-content">
 
 <h2> Dosen</h2>
@@ -9,20 +10,23 @@
 <br>
 <section class="blog_area">
             <div class="container">
+                      @if(Context.Session.GetString("role") == "superadmin"){
+             <p>
+                    <a href="@Url.Action("Create", "Dosen")" class="btn btn-success">Tambah Dosen</a>
+                </p>
+                        }
                 <div class="row">
 <table class="table table-hover">
     <tr>
         <th>Nik</th>
         <th>Nama</th>
-        <th>Password</th>
         <th>Id</th>
     </tr>
     @foreach(var data in Model){
     <tr>
         <td>@data.Nik</td>
         <td>@data.Nama</td>
-        <td>@data.Password</td>
-        <td>@data.Id</td>
+        <td>@data.Username</td>
     </tr>
     }
 </table> 
