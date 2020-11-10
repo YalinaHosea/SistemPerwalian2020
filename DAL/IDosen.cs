@@ -10,6 +10,9 @@ namespace SistemPerwalian2020.DAL
         IEnumerable<Dosen> GetDosen();
 
         void AddDosen (Dosen dosen);
+        void Update(Dosen dosen);
+        void Delete(string nik);
+
     }
 
 }

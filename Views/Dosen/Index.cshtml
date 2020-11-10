@@ -28,9 +28,16 @@
         <td>@data.Nama</td>
         <td>@data.Username</td>
     </tr>
+                    }
     }
 </table> 
  </div>
             </div>
 </section>
 </div>
+ @* @if(Context.Session.GetString("role") == "superadmin"){
+                            <td style="vertical-align:middle"> @Html.ActionLink("Edit", "Edit", new { Nik = data.Nik }, 
+                                new { @class = "btn btn-warning btn-round", @style = "color:white" })</td>
+                                            <td style="vertical-align:middle">               
+                                                @Html.ActionLink("Delete", "Delete", new { Nik = data.Nik }, 
+                                                new { @class = "btn btn-danger btn-round", @style = "color:white"  })</td> *@

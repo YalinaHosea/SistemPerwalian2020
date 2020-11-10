@@ -1997,6 +1997,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Program S1\\Semester 7\\Peterpan\\SistemPerwalian2020\\Views\\Dosen\\Edit.cshtml",
+      "TargetPath": "Views\\Dosen\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Program S1\\Semester 7\\Peterpan\\SistemPerwalian2020\\Views\\Mahasiswa\\Create.cshtml",
       "TargetPath": "Views\\Mahasiswa\\Create.cshtml",
       "FileKind": "mvc"

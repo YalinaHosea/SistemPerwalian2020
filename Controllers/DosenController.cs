@@ -30,9 +30,41 @@ namespace SistemPerwalian2020.Controllers{
             catch(Exception x) {
                 TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
                 return RedirectToAction("Index");
-            }
+            }}
 
-        }
+        // [HttpPost]
+        // public IActionResult Edit(Dosen data) {
+        //     var nik = data.Dosen.nik;
+        //     var angakatan_sub = nim_sub.Substring(2, 2);
+        //     var angkatan = "20" + angakatan_sub;
+        //     data.mhs.Angkatan = angkatan;
+        //     try
+        //     {
+        //         _mhs.Update(data);
+        //         TempData["pesan"] = Helpers.Message.GetPesan("success", "Data dosen berhasil diubah");
+        //         return RedirectToAction("Index");
+        //     }
+        //     catch(Exception x) {
+        //         TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
+        //         return RedirectToAction("Index");
+        //     }
+        // }
+        // }
+        // public IActionResult Delete(string nik)
+        // {
+        //     try
+        //     {
+        //         dosen.Delete(nik);
+        //         TempData["pesan"] = Helpers.Message.GetPesan("success", "sukses menghapus data dosen");
+        //         return RedirectToAction("Index");
 
+        //     }
+        //     catch (Exception x)
+        //     {
+        //         TempData["pesan"] = Helpers.Message.GetPesan("danger", x.Message);
+        //         return RedirectToAction("Index");
+
+        //     }
+        // }
     }
 }

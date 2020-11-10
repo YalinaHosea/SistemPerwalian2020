@@ -77,8 +77,20 @@
                             {
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("IndexDosen","Krs", new {
                                     id=@Context.Session.GetString("id")})">Daftar Krs Mahasiswa</a></li>
-
                             }
+                              @* @if (@Context.Session.GetString("role") == "superadmin")
+                            {
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Create","dosen", new {
+                                    id=@Context.Session.GetString("id")})">Tambah Dosen</a></li>
+
+                            } *@
+                              @* @if (@Context.Session.GetString("role") == "superadmin")
+                            {
+                            <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","dosen", new {
+                                    id=@Context.Session.GetString("id")})">Daftar Dosen</a></li>
+
+                            } *@
+
                             <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Jadwal")">Jadwal
                                     Perwalian</a></li>
                             @if (@Context.Session.GetString("role") == "mahasiswa")

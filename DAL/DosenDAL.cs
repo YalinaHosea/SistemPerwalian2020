@@ -36,7 +36,7 @@ namespace SistemPerwalian2020.DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-                var strSql = @"select * from Dosen where NIK!='1'";
+                var strSql = @"select * from Dosen where Nik!='1'";
                 return conn.Query<Dosen>(strSql);
             }
         }
@@ -58,5 +58,35 @@ namespace SistemPerwalian2020.DAL
                 }
             }      
          }
+        //   public void Update(Dosen dosen)
+        // {
+        //      using (SqlConnection conn = new SqlConnection(GetConnStr()))
+        //     {
+        //         var strsql = @"update Dosen set Nik=@Nik, Nama=@nama, Username=@username, Dosen=@Dosen where Nik='" + dosen.oldNik + "'";
+        //         var param = new { Nik = dosen.dosen.Nik, nama = dosen.dosen.Nama, username = dosem.dosen.Username, dosen = dosen.dosen.Dosen };
+        //         try
+        //         {
+        //             conn.Execute(strsql, param);
+        //         }
+        //         catch (SqlException x)
+        //         {
+        //             throw new Exception($"error : {x.Message}");
+        //         };       
+        //     }
+        //  }
+        //   public void Delete(string Nik) {
+        //       using (SqlConnection conn = new SqlConnection(GetConnStr()))
+        //     {
+        //         var sql = @"delete from Dosen where Nik='" + Nik + "'";
+        //         try
+        //         {
+        //             conn.Execute(sql);
+        //         }
+        //         catch (SqlException x)
+        //         {
+        //             throw new Exception($"error : {x.Message}");
+        //         }
+        //     }
+        //  }
     }
 }

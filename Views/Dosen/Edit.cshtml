@@ -1,0 +1,52 @@
+@* @model SistemPerwalian2020.Models.Dosen
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-content" style="padding-bottom: 50px;">
+    <br>
+    <h2 style="text-align: center;">Ubah Data Dosen</h2>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-9">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label asp-for="dosen.nik" class="control-label">NIK</label>
+                        <input asp-for="dosen.nik" class="form-control" />
+                        <span asp-validation-for="dosen.nik" class="text-danger"></span>
+                    </div>
+                     <div class="form-group">
+                        <input type="hidden" asp-for="Oldnik" class="form-control" />
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="dosen.Nama" class="control-label">Nama Dosen</label>
+                    <input asp-for="dosen.Nama" class="form-control" />
+                    <span asp-validation-for="dosen.Nama" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="dosen.Username" class="control-label">Username</label>
+                    <input asp-for="dosen.Username" class="form-control" />
+                    <span asp-validation-for="dosen.Username" class="text-danger"></span>
+
+                </div>
+            </div>
+                <div class="form-group center" style="align-self: center;">
+                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div> *@
